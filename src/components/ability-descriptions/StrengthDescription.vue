@@ -1,15 +1,15 @@
 <template>
     <div class="ability-description">
-        <h2>Strength</h2>
-        <p>Strength measures muscle and physical power. 
-            This ability is important for those who engage in hand-to-hand combat, such as fighters, barbarians, and paladins. 
-            Strength also sets the maximum amount of weight your character can carry.</p>
-        <p>You apply your character's Strength modifier to:</p>
+        <h2>Сила</h2>
+        <p>Сила измеряет физическую силу вашего персонажа. Она важна если персонаж собирается драться в 
+            ближнем бою. Ваш модификатор Силы добавляется к броскам урона ближнего боя, и определяет 
+            сколько веса может переносить персонаж.</p>
+        <p>Вы применяете модификатор Силы вашего персонажа к:</p>
         <ul>
-            <li>Melee attack rolls</li>
-            <li>Damage rolls when using a melee or thrown weapon</li>
-            <li>Climb, Swim, and Strength checks</li>
-            <li>Strength checks (for breaking down doors and the like)</li>
+            <li>Атакам ближнего боя</li>
+            <li>Броски урона при использовании оружия ближнего боя или метательного</li>
+            <li>Проверки Лазания, Плавания и Силы</li>
+            <li>Проверки Силы (для взлома дверей, поднятия тяжести и т.п.)</li>
         </ul>
     </div>
 </template>

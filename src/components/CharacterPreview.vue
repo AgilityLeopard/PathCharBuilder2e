@@ -102,25 +102,25 @@ export default {
     computed: {
         abilitiesFormatted: function () {
             return {
-                Str: this.abilities.strength,
-                Int: this.abilities.intelligence,
-                Dex: this.abilities.dexterity,
-                Wis: this.abilities.wisdom,
-                Con: this.abilities.constitution,
-                Cha: this.abilities.charisma,
+                сил: this.abilities.сила,
+                инт: this.abilities.интеллект,
+                лов: this.abilities.ловкость,
+                муд: this.abilities.мудрость,
+                тел: this.abilities.телосложение,
+                хар: this.abilities.харизма,
             }
         },
         hp: function () {
             let klassBonus = this.klass ? parseInt(this.klass.hp) : 6;
-            let hp = klassBonus + parseInt(this.calcBonus(this.abilities.constitution));
+            let hp = klassBonus + parseInt(this.calcBonus(this.abilities.телосложение));
             return ( 'hp' === this.favouredKlass ) ? hp + 1 : hp;
         },
         ac: function () {
-            let ac = 10 + parseInt(this.calcBonus(this.abilities.dexterity));
+            let ac = 10 + parseInt(this.calcBonus(this.abilities.ловкость));
             return ac;
         },
         touch: function () {
-            let ac = 10 + parseInt(this.calcBonus(this.abilities.dexterity));
+            let ac = 10 + parseInt(this.calcBonus(this.abilities.ловкость));
             return ac;
         },
         ff: function () {
@@ -130,7 +130,7 @@ export default {
         ref: function() {
             let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
             let klassBonus = this.klass ? parseInt(this.klass.ref) : 0;
-            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.dexterity)) + racialBonus;
+            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + racialBonus;
             if ( ref > 0) {
                 return '+' + ref;
             }
@@ -141,7 +141,7 @@ export default {
         fort: function() {
             let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
             let klassBonus = this.klass ? parseInt(this.klass.fort) : 0;
-            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.constitution)) + racialBonus;
+            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.телосложение)) + racialBonus;
             if ( fort > 0) {
                 return '+' + fort;
             }
@@ -152,7 +152,7 @@ export default {
         will: function() {
             let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
             let klassBonus = this.klass ? parseInt(this.klass.will) : 0;
-            let will = klassBonus + parseInt(this.calcBonus(this.abilities.wisdom)) + racialBonus;
+            let will = klassBonus + parseInt(this.calcBonus(this.abilities.мудрость)) + racialBonus;
             if ( will > 0) {
                 return '+' + will;
             }
@@ -162,7 +162,7 @@ export default {
         },
         mab: function() {
             let klassBonus = this.klass ? parseInt(this.klass.bab) : 0;
-            let mab = klassBonus + parseInt(this.calcBonus(this.abilities.strength));
+            let mab = klassBonus + parseInt(this.calcBonus(this.abilities.сила));
             if ( mab >= 0) {
                 return '+' + mab;
             }
@@ -172,7 +172,7 @@ export default {
         },
         rab: function() {
             let klassBonus = this.klass ? parseInt(this.klass.bab) : 0;
-            let rab = klassBonus + parseInt(this.calcBonus(this.abilities.dexterity));
+            let rab = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость));
             if ( rab >= 0) {
                 return '+' + rab;
             }

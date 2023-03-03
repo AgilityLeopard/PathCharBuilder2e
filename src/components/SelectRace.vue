@@ -2,12 +2,13 @@
 <template>
     <div id="select-abilities" class="main-col-content">
         <div class="content">
-            <h2 class="section-header">Now let's pick a race!</h2>
-            <p>In Pathfinder, race is a fundamental part of every character. Race mixes biology and culture, then translates those concepts into racial traits. A race's traits, history, and culture all frame your character. This is true whether you play to or against the race's stereotypes.
-            <p>Choosing your character's race is one of the more important decisions you'll need to make. Each race is best suited to a specific type of role -- dwarves make better fighters than they do sorcerers, while halflings aren't as good as half-orcs at being barbarians. The races presented here have wildly different abilities, personalities and societies, but at the same time none of the races here deviate too far from humanity and all of their abilities are roughly equal and balanced.</p>
+            <h2 class="section-header">Теперь давайте выберем расу!</h2>
+            <p>В Pathfinder раса является фундаментальной частью каждого персонажа. Раса смешивает биологию и культуру, а затем переводит эти концепции в расовые черты. Черты расы, история и культура формируют вашего персонажа. Это верно независимо от того, играете ли вы за стереотипы расы или против них.
+            <p>Выбор расы вашего персонажа — одно из наиболее важных решений, которое вам нужно будет принять. Каждая раса лучше всего подходит для определенного типа роли — дварфы лучше борются, чем колдуны, а полурослики не так хороши, как полуорки, как варвары. Представленные здесь расы обладают совершенно разными способностями, характерами и обществами.
+но в то же время ни одна из рас здесь не отклоняется слишком далеко от человечества, и все их способности примерно равны и сбалансированы.</p>
         </div>
         <div class="content box-shadow text-center">
-            <h4 class="ntm">Select a race.</h4>
+            <h4 class="ntm">Выберите расу.</h4>
             <div class="radio-toolbar select-race content">
                 <template v-for="(race, raceName) in races">
                     <input 
@@ -31,7 +32,7 @@
             <h2 class="race-title cap">{{myRace.race}}</h2>
             <p>{{myRace.description}}</p>
             <h3>Standard Traits</h3>
-            <p v-if="!myRace.freeAbility" class="ability-bonuses">
+            <p v-if="!myRace.freeAbility1" class="ability-bonuses">
                 <strong>Ability Scores:</strong>
                 <span v-for="(mod, ability) in myRace.abilities" :key="'race-ability-bonus-' + ability">
                     <template v-if="mod > 0"> +{{mod}} {{ability}}, </template>
@@ -43,25 +44,47 @@
             </p>
             <div v-else>
                 <p><strong>Ability Scores:</strong> <span class="cap">{{myRace.plural}}</span> gain a +2 bonus to one ability score of their choice.</p>
-                <div class="content box-shadow text-center" style="margin-bottom: 1rem;">
+                <div v-if="myRace.freeAbility1" class="content box-shadow text-center" style="margin-bottom: 1rem;">
                     <h4 class="ntm">Select an ability score.</h4>
                     <div class="radio-toolbar select-race__select-ability content">
                     <template v-for="(score, ability) in myRace.abilities">
                         <input 
-                            v-model="freeAbility" 
-                            :key="'select-free-' + ability + '-input'" 
+                            v-model="freeAbility1" 
+                            :key="'select-free1-' + ability + '-input'" 
                             type="radio" 
-                            name="freeAbility" 
-                            :id="'select-free-' + ability" 
+                            name="freeAbility1" 
+                            :id="'select-free1-' + ability" 
                             :value="ability" 
-                            @change="updateFreeAbility">
-                        <label :for="'select-free-' + ability"  :key="'select-free-' + ability + '-label'">
+                            @change="updateFreeAbility1">
+                        <label :for="'select-free1-' + ability"  :key="'select-free1-' + ability + '-label'">
+                            <div >
+                                {{ability}}
+                            </div>
+                        </label>
+                    </template>
+                </div>
+                </div>
+                <p><strong>Ability Scores:</strong> <span class="cap">{{myRace.plural}}</span> gain a +2 bonus to one ability score of their choice.</p>
+                <div v-if="myRace.freeAbility2" class="content box-shadow text-center" style="margin-bottom: 1rem;">
+                    <h4 class="ntm">Select an ability score.</h4>
+                    <div class="radio-toolbar select-race__select-ability content">
+                    <template v-for="(score, ability) in myRace.abilities">
+                        <input 
+                            v-model="freeAbility2" 
+                            :key="'select-free2-' + ability + '-input'" 
+                            type="radio" 
+                            name="freeAbility2" 
+                            :id="'select-free2-' + ability" 
+                            :value="ability" 
+                            @change="updateFreeAbility2">
+                        <label :for="'select-free2-' + ability"  :key="'select-free2-' + ability + '-label'">
                             <div>
                                 {{ability}}
                             </div>
                         </label>
                     </template>
                 </div>
+                
                 </div>
             </div>
             <p><strong>Size: </strong> {{myRace.size}} 
@@ -113,7 +136,10 @@ export default {
         return {
             myRace: null,
             races: raceData,
-            freeAbility: "",
+            BoostAbility1: "",
+            BoostAbility2: "",
+            freeAbility2: "",
+            freeAbility1: "",
             checkedLanguages: []
         };
     },
@@ -125,7 +151,7 @@ export default {
     },
     computed: {
         intBonus: function() {
-            return Math.floor( ( this.abilities.intelligence - 10 ) / 2 );
+            return Math.floor( ( this.abilities.интеллект - 10 ) / 2 );
         }
     },
      created() {
@@ -142,18 +168,30 @@ export default {
         },
         updateRace: function() {
             this.checkedLanguages = [];
-            this.freeAbility = null;
+            this.freeAbility1 = null;
+            this.freeAbility2 = null;
             this.$emit('set-race', this.myRace);
         },
-        updateFreeAbility: function() {
-            if ( this.myRace.freeAbility ) {
-                for (let ability in this.myRace.abilities){
-                    if(this.myRace.abilities.hasOwnProperty(ability)){
-                        this.myRace.abilities[ability] = 0;
-                    }
-                }
-                this.myRace.abilities[ this.freeAbility ] = 2;
-            }
+        updateFreeAbility1: function() {
+             if ( this.myRace.freeAbility1 ) {
+                 for (let ability in this.myRace.abilities){
+                     if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility2){
+                         this.myRace.abilities[ability] = 0;
+                     }
+                 }
+                this.myRace.abilities[ this.freeAbility1 ] = 2;
+             
+             }
+        },
+        updateFreeAbility2: function() {
+            if ( this.myRace.freeAbility2 ) {
+                 for (let ability in this.myRace.abilities){
+                     if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility1){
+                         this.myRace.abilities[ability] = 0;
+                     }
+                 }
+                this.myRace.abilities[ this.freeAbility2 ] = 2;
+             }
         }
     }
 }

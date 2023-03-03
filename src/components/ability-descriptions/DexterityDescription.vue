@@ -1,19 +1,20 @@
 <template>
-    <div class="ability-description">
-        <h2>Dexterity</h2>
-        <p>
-            Dexterity measures agility, reflexes, and balance. 
-            This ability is the most important one for rogues and rangers, but it's also useful for characters who wear light or medium armor or no armor at all such as wizards and sorcerers. 
-            This ability is vital for characters seeking to excel with ranged weapons.
-        </p>
-        <p>
-            You apply your character's Dexterity modifier to:
-        </p>
-        <ul>
-            <li>Ranged attack rolls</li>
-            <li>Armor class (Ability to avoid attacks)</li>
-            <li>Reflex saving throws (for quickly avoiding hazards)</li>
-            <li>Acrobatics, Disable Device, Escape Artist, Fly, Ride, Sleight of Hand, and Stealth checks</li>
-        </ul>
-    </div>
+  <div class="ability-description">
+    <h2>Kjdrjcnm</h2>
+    <p>
+      Ловкость измеряет ловкость, рефлексы и равновесие. Эта способность
+      является наиболее важной для разбойников и рейнджеров, но она также
+      полезна для персонажей, которые носят легкие или средние доспехи или
+      вообще не имеют доспехов, таких как волшебники и колдуны. Эта способность
+      жизненно важна для персонажей, стремящихся преуспеть в обращении с оружием
+      дальнего боя.
+    </p>
+    <p>Вы применяете модификатор Ловкости к:</p>
+    <ul>
+      <li>Атакам дальнего боя</li>
+      <li>Классу Доспех</li>
+      <li>Спасброски Рефлексов (для быстрого избегания опасностей)</li>
+      <li>Акробатика, Побег, Полет, Езда, Ловкость рук и Скрытность</li>
+    </ul>
+  </div>
 </template>

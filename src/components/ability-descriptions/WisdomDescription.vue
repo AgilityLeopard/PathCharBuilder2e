@@ -1,17 +1,19 @@
 <template>
-    <div class="ability-description">
-        <h2>Wisdom</h2>
-        <p>
-            Wisdom describes a character's willpower, common sense, awareness, and intuition. 
-            Wisdom is the most important ability for divine spellcasters like Clerics and Druids. But any character that wants to have acute senses, should have a high score in Wisdom.
-        </p>
-        <p>
-            You apply your character's Wisdom modifier to:
-        </p>
-        <ul>
-            <li>Will saving throws (for negating the effects of compulsions, charms, and other spells)</li>
-            <li>The difficulty to resist your divine spells<li>
-            <li>Heal, Perception, Profession, Sense Motive, and Survival checks</li>
-        </ul>
-    </div>
+  <div class="ability-description">
+    <h2>Мудрость</h2>
+    <p>
+      Мудрость описывает силу воли, здравый смысл, осведомленность и интуицию
+      персонажа. Мудрость — самая важная способность для божественных
+      заклинателей, таких как клирики и друиды. Но любой персонаж, который хочет
+      иметь острые чувства, должен иметь высокий показатель Мудрости.
+    </p>
+    <p>Вы применяете модфификатор Мудрости к:</p>
+    <ul>
+      <li>
+        Спасброски воли (для отмены эффектов принуждения, чар и других
+        заклинаний)
+      </li>
+      <li>Проверки на Лечение, Восприятие, Чувство Мотива и Выживание</li>
+    </ul>
+  </div>
 </template>

@@ -1,14 +1,18 @@
 <template>
-    <div class="ability-description">
-        <h2>Intelligence</h2>
-        <p>Intelligence determines how well your character learns and reasons. 
-           This ability is essential for wizards because it affects their spellcasting ability in many ways.</p>
-        <p>You apply your character's Intelligence modifier to:</p>
-        <ul>
-            <li>The number of languages your character knows</li>
-            <li>The number of skill points gained each level</li>
-            <li>The difficulty to resist your wizard spells<li>
-            <li>Appraise, Craft, Knowledge, Linguistics, and Spellcraft checks</li>
-        </ul>
-    </div>
+  <div class="ability-description">
+    <h2>Intelligence</h2>
+    <p>
+      Интеллект определяет, насколько хорошо ваш персонаж учится и рассуждает.
+      Эта способность очень важна для волшебников, потому что она влияет на их
+      способности колдовать разными способами.
+    </p>
+    <p>Вы применяете модификатор Интеллекта к:</p>
+    <ul>
+      <li>Количество языков, которые знает ваш персонаж</li>
+      <li>Количество навыков, которые можно тренировать</li>
+      <li>Сложность сопротивления вашим заклинаниям волшебника</li>
+      <li></li>
+      <li>Проверка Оценки, Ремесла, Знаний и Колдовства волшебника</li>
+    </ul>
+  </div>
 </template>

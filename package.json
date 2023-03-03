@@ -1,6 +1,6 @@
 {
-  "name": "pf2-character-creator",
-  "description": "",
+  "name": "pf1-character-creator",
+  "description": "A Character Creator for Pathfinder 2e",
   "version": "1.0.0",
   "author": "Shadow",
   "license": "MIT",
@@ -17,14 +17,9 @@
     "@fortawesome/vue-fontawesome": "^0.1.9",
     "@mdi/font": "^4.7.95",
     "pretty-checkbox": "^3.0.3",
-    "progress-tracker": "2.0.7",
     "vue": "^2.5.11"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -33,13 +28,15 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
-    "node-sass": "^4.5.3",
+    "gulp-sass": "^5.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-px-to-viewport": "^1.1.1",
     "progress-tracker": "^2.0.5",
+    "sass": "^1.58.3",
     "sass-loader": "^6.0.6",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
-  },
-  "keywords": []
+  }
 }

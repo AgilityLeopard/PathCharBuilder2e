@@ -87,11 +87,11 @@ export default {
 				};
 			} else if ('other' == this.gender) {
 				this.pronouns = {
-					they: "they",
-					them: "them",
-					their: "their",
-					theirs: "theirs",
-					themself: "themself"
+					they: "они",
+					them: "просто",
+					their: "заколебали",
+					theirs: "со своим",
+					themself: "именем"
 				};
 			}
 			this.$emit('set-gender', this.gender);

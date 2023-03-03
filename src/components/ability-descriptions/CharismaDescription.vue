@@ -1,15 +1,14 @@
 <template>
     <div class="ability-description">
-        <h2>Charisma</h2>
-        <p>Charisma measures a character's personality, personal magnetism, ability to lead, and appearance. 
-            It is essential for sorcerers as it affects their spells in many ways. 
-            Clerics will also need it, since it affects their ability to channel energy. </p>
-        <p>You apply your character's Charisma modifier to:</p>
+        <h2>Харизма</h2>
+        <p>Харизма измеряет личность персонажа, личный магнетизм, способность вести за собой и внешний вид.
+            Это важно для чародеев, так как влияет на их заклинания разными способами.
+             </p>
+        <p>Вы применяете модификатор Харизмы:</p>
         <ul>
-            <li>Checks that represent attempts to influence others.</li>
-            <li>The difficulty to resist your sorcerer spells</li>
-            <li>The difficulty to resist your cleric channel energy ability in attempt to harm undead foes</li>
-            <li>Bluff, Diplomacy, Disguise, Handle Animal, Intimidate, Perform, and Use Magic Device checks.</li>
+            <li>Проверки, представляющие попытки повлиять на других</li>
+            <li>Сложность сопротивления вашим заклинаниям чародея</li>
+            <li>Обман, Дипломатия, Запугивание, Исполнение.</li>
         </ul>
     </div>
 </template>

@@ -6,7 +6,7 @@
         style="max-height: 80px; width: auto"
       />
       <h1>Pathfinder 2E Создание персонажа</h1>
-      <ul class="progress-tracker">
+      <!-- <ul class="progress-tracker">
         <li
           v-for="(step, index) in steps"
           v-bind:key="step"
@@ -24,12 +24,12 @@
             <h4 class="progress-title">{{ step }}</h4>
           </div>
         </li>
-      </ul>
+      </ul> -->
     </div>
     <div class="container">
       <div class="row">
         <div class="preview-column col-sm-12 col-md-3 col-lg-3">
-          <!-- <character-preview
+          <character-preview
             :name="name"
             :abilities="abilities"
             :race="race"
@@ -37,7 +37,7 @@
             :favouredKlass="favouredKlass"
             :feats="feats"
           >
-          </character-preview> -->
+          </character-preview>
         </div>
         <div class="col-sm-12 col-md-9 col-lg-9">
           <select-name
@@ -52,6 +52,7 @@
             :name="name"
             :pronouns="pronouns"
             :abilities="baseAbilities"
+            :boosts="baseBoost"
             @set-abilities="setAbilities"
             @set-ability-points-ratio="setAbilityPointsRatio"
           >
@@ -217,12 +218,12 @@ export default {
 
       //Abilities
       baseAbilities: {
-        strength: 10,
-        dexterity: 10,
-        constitution: 10,
-        intelligence: 10,
-        wisdom: 10,
-        charisma: 10,
+        сила: 10,
+        ловкость: 10,
+        телосложение: 10,
+        интеллект: 10,
+        мудрость: 10,
+        харизма: 10,
       },
       abilityPointsRatio: 0,
 
@@ -325,30 +326,30 @@ export default {
     abilities: function () {
       if (this.race && this.race.abilities) {
         return {
-          strength: this.baseAbilities.strength + this.race.abilities.strength,
-          dexterity:
-            this.baseAbilities.dexterity + this.race.abilities.dexterity,
-          constitution:
-            this.baseAbilities.constitution + this.race.abilities.constitution,
-          intelligence:
-            this.baseAbilities.intelligence + this.race.abilities.intelligence,
-          wisdom: this.baseAbilities.wisdom + this.race.abilities.wisdom,
-          charisma: this.baseAbilities.charisma + this.race.abilities.charisma,
+          сила: this.baseAbilities.сила + this.race.abilities.сила,
+          ловкость:
+            this.baseAbilities.ловкость + this.race.abilities.ловкость,
+          телосложение:
+            this.baseAbilities.телосложение + this.race.abilities.телосложение,
+          интеллект:
+            this.baseAbilities.интеллект + this.race.abilities.интеллект,
+          мудрость: this.baseAbilities.мудрость + this.race.abilities.мудрость,
+          харизма: this.baseAbilities.харизма + this.race.abilities.харизма,
         };
       }
       return {
-        strength: this.baseAbilities.strength,
-        dexterity: this.baseAbilities.dexterity,
-        constitution: this.baseAbilities.constitution,
-        intelligence: this.baseAbilities.intelligence,
-        wisdom: this.baseAbilities.wisdom,
-        charisma: this.baseAbilities.charisma,
+        сила: this.baseAbilities.сила,
+        ловкость: this.baseAbilities.ловкость,
+        телосложение: this.baseAbilities.телосложение,
+        интеллект: this.baseAbilities.интеллект,
+        мудрость: this.baseAbilities.мудрость,
+        харизма: this.baseAbilities.харизма,
       };
     },
     skillPoints: function () {
       let skills =
         parseInt(this.klass.skillPoints) +
-        parseInt(this.getMod(this.abilities.intelligence));
+        parseInt(this.getMod(this.abilities.интеллект));
       skills = "human" === this.race.race ? skills + 1 : skills;
       if (skills > 0) {
         return "sp" === this.favouredKlass ? skills + 1 : skills;
