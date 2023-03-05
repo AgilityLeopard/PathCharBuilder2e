@@ -28,7 +28,7 @@
 			<h4>Текущее имя?</h4>
 			<div class="input-group mb-3" style="display: flex; justify-content: center;">
 				<input v-model="name" @change="$emit('set-name', name)" id="input-name" type="text" placeholder="Имя" class="input input-lg" aria-label="Character Name" aria-describedby="character-name">
-				<button class="btn btn-outline-primary" v-on:click="randomizeName">Randomize Name</button>
+				<button class="btn btn-outline-primary" v-on:click="randomizeName">Случайное имя</button>
 			</div>
 		</div>
     </div>
@@ -45,11 +45,11 @@ export default {
 			name: "",
 			gender: "male",
 			pronouns: {
-				they: "he",
-				them: "him",
-				their: "his",
-				theirs: "his",
-				themself: "himself"
+				they: "он",
+				them: "их",
+				their: "его",
+				theirs: "его",
+				themself: "их"
 			}
 		}
 	},
@@ -71,19 +71,19 @@ export default {
 		selectGender: function () {
 			if ('male' == this.gender) {
 				this.pronouns = {
-					they: "he",
-					them: "him",
-					their: "his",
-					theirs: "his",
-					themself: "himself"
+					they: "он",
+					them: "его",
+					their: "его",
+					theirs: "его",
+					themself: "их"
 				};
 			} else if ('female' == this.gender) {
 				this.pronouns = {
-					they: "she",
-					them: "her",
-					their: "her",
-					theirs: "hers",
-					themself: "herself"
+					they: "она",
+					them: "её",
+					their: "её",
+					theirs: "её",
+					themself: "её"
 				};
 			} else if ('other' == this.gender) {
 				this.pronouns = {

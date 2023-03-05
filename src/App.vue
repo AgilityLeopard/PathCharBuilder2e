@@ -128,7 +128,7 @@
               v-on:click="prevStep"
               class="btn btn-lg btn-primary btn-previous"
             >
-              Previous
+              Назад
             </button>
             <div>
               <button
@@ -137,7 +137,7 @@
                 class="btn btn-lg btn-primary btn-next"
                 :disabled="!canProceed"
               >
-                Next
+                Вперёд
                 <p id="proceedError">
                   {{ proceedError }}
                 </p>
@@ -147,8 +147,8 @@
                 class="btn btn-lg btn-primary btn-next"
                 disabled="true"
               >
-                Finish!
-                <p id="proceedError">"This hasn't been implemented yet."</p>
+                Заканчиваем!
+                <p id="proceedError">"Функционал ещё не готов"</p>
               </button>
             </div>
           </div>
@@ -303,21 +303,21 @@ export default {
       switch (this.currStep) {
         case 0:
           result = this.name && this.name.length > 0;
-          this.proceedError = result ? "" : "Choose a name before proceeding!";
+          this.proceedError = result ? "" : "Выбирите Имя!";
           return result;
         case 1:
           result = this.abilityPointsRatio <= 1;
           this.proceedError = result
             ? ""
-            : "You have spent too many points on your abilities!";
+            : "!";
           return result;
         case 2:
           result = this.race != null;
-          this.proceedError = result ? "" : "You must select a race!";
+          this.proceedError = result ? "" : "Вы должны выбрать Расу!";
           return result;
         case 3:
           result = this.klass != null;
-          this.proceedError = result ? "" : "You must select a class!";
+          this.proceedError = result ? "" : "вы должны выбрать класс!";
           return result;
         default:
           return true;
@@ -363,8 +363,8 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Amethysta|Titillium+Web&display=swap");
-//@import "node_modules/progress-tracker/src/styles/progress-tracker.scss";
-//@import '~pretty-checkbox/src/pretty-checkbox.scss';
+// @import "node_modules/progress-tracker/src/styles/progress-tracker.scss";
+// @import '~pretty-checkbox/src/pretty-checkbox.scss';
 
 body {
   --darker-color: #1c0000;
