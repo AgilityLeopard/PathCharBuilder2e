@@ -81,7 +81,7 @@ export default {
     return {
       skillList: skillData,
       trainedSkills: [],
-      trained: false,
+      SkillNumber: 0,
     };
   },
 

@@ -231,7 +231,7 @@ export default {
       //Race
       race: null,
       myLanguages: ["Всеобщий"],
-
+      NumberSkill: 0,
       //Class
       klass: null,
       favouredKlass: "",
