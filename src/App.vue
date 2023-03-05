@@ -36,6 +36,7 @@
             :klass="klass"
             :favouredKlass="favouredKlass"
             :feats="feats"
+            :myLanguages="myLanguages"
           >
           </character-preview>
         </div>
@@ -229,7 +230,7 @@ export default {
 
       //Race
       race: null,
-      myLanguages: ["Common"],
+      myLanguages: ["Всеобщий"],
 
       //Class
       klass: null,

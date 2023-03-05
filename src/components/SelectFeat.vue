@@ -2,12 +2,12 @@
 <template>
     <div id="select-feats" class="main-col-content">
         <div class="content">
-            <h2 class="section-header">Take a feat!</h2>
-            <p>At level one, all adventurers gain a feat<span v-if="race.race === 'human'">. Since {{name}} is a human, {{pronouns.they}} may select one additional feat</span>!</p>
+            <h2 class="section-header">Возьмите Черту!</h2>
+            <p>At level one, all adventurers gain a feat<span v-if="race.race === 'human'">. Так как {{name}} человек, {{pronouns.they}} может выбрать одну Черту</span>!</p>
         </div>
         <div class="content text-center box-shadow">
-            <h4>Select {{maxFeats}} {{maxFeats > 1 ? 'feats' : 'feat'}} from any {{maxFeats > 1 ? 'categories' : 'category'}}.</h4>
-            <h3>Combat Feats</h3>
+            <h4>Выберите {{maxFeats}} {{maxFeats > 1 ? 'feats' : 'feat'}} из списка {{maxFeats > 1 ? 'categories' : 'category'}}.</h4>
+            <h3>Боевая черта</h3>
             <div class="checkbox-toolbar">
                 <span v-for="feat in featList.combat" :key="'feat-' + feat.name">
                     <input 

@@ -7,35 +7,26 @@
 		"abilities": { "сила": 0, "ловкость": 0, "телосложение": 0, "интеллект": 0, "мудрость": 0, "харизма": 0 },
 		"freeAbility1": true,
 		"freeAbility2": true,
-		"size": "Medium",
-		"speed": 30,
-		"languages": ["Common"],
+		"size": "Средний",
+		"speed": 25 ,
+		"languages": ["Всеобщий"],
 		"bonusLanguages": ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elven", "Ignan", "Infernal ", "Giant", "Gnome", "Goblin", "Halfling", "Orc", "Sylvan", "Terran", "Undercommon"],
-		"racialTraits": [
-			{
-				"name": "Bonus Feat",
-				"desc": "Select one additional feat at 1st level"
-			},
-			{
-				"name": "Skilled",
-				"desc": "Gain one additional skill rank at each level"
-			}
-		],
+		"racialTraits": [],
 		"bonuses": {
 
 		}	
 	},
 	"elf": {
-		"race": "elf",
-		"plural": "elves",
+		"race": "эльф",
+		"plural": "эльфы",
 		"image" : "elf.png",
-		"description": "Elves possess a graceful, slender physique that is accentuated by their long, pointed ears. It is a mistake, however, to consider them weak or feeble, as the thin limbs of an elf can contain surprising power. The long-lived elves are children of the natural world. They seek to live in balance with the wild and understand it better than most other mortals. Elves also have an appreciation for the written word, magic, and painstaking research. Their naturally keen minds and senses, combined with their inborn patience, make them particularly suited to wizardry.",
+		"description": "Эльфы обладают грациозным, стройным телосложением, подчеркнутым их длинными заостренными ушами. Однако ошибочно считать их слабыми или немощными, поскольку тонкие конечности эльфа могут таить в себе удивительную силу. Эльфы-долгожители — дети мира природы.Они стремятся жить в равновесии с дикой природой и понимают ее лучше, чем большинство других смертных. Эльфы также ценят письменное слово, магию и кропотливые исследования. Их природный острый ум и чувства в сочетании с врожденным терпением делают их особенно подходящими для волшебства.",
 		"abilities": { "сила": 0, "ловкость": 2, "телосложение": -2, "интеллект": 2, "мудрость": 0, "харизма": 0 },
-		"freeAbility": false,
-		"size": "Medium",
+		"freeAbility1": true,
+		"size": "Средний",
 		"speed": 30,
 		"languages": ["Common", "Elven"],
-		"bonusLanguages": ["Celestial", "Draconic", "Gnoll", "Gnome", "Goblin", "Orc", "Sylvan"],
+		"bonusLanguages": ["Небесный", "Драконий", "Гнольский", "Гномский", "Гоблинский", "Орочий", "Сильван"],
 		"racialTraits": [
 			{
 				"name": "Elven Immunities",

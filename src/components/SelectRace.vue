@@ -43,7 +43,7 @@
                 </span>
             </p>
             <div v-else>
-                <p><strong>Ability Scores:</strong> <span class="cap">{{myRace.plural}}</span> gain a +2 bonus to one ability score of their choice.</p>
+                <p><strong>Очки характеристик:</strong> <span class="cap">{{myRace.plural}}</span> получают буст +2 на ваш выбор.</p>
                 <div v-if="myRace.freeAbility1" class="content box-shadow text-center" style="margin-bottom: 1rem;">
                     <h4 class="ntm">Select an ability score.</h4>
                     <div class="radio-toolbar select-race__select-ability content">
@@ -64,7 +64,7 @@
                     </template>
                 </div>
                 </div>
-                <p><strong>Ability Scores:</strong> <span class="cap">{{myRace.plural}}</span> gain a +2 bonus to one ability score of their choice.</p>
+                <p><strong>Очки характеристик:</strong> <span class="cap">{{myRace.plural}}</span> получают буст +2 на ваш выбор.</p>
                 <div v-if="myRace.freeAbility2" class="content box-shadow text-center" style="margin-bottom: 1rem;">
                     <h4 class="ntm">Select an ability score.</h4>
                     <div class="radio-toolbar select-race__select-ability content">
@@ -87,18 +87,18 @@
                 
                 </div>
             </div>
-            <p><strong>Size: </strong> {{myRace.size}} 
+            <p><strong>Размер: </strong> {{myRace.size}} 
             
-            <span v-if="myRace.size == 'Small'" class="caption"> <br>(Small creatures gain a +1 bonus to Armor Class (AC), a +1 bonus to attack rolls, a +4 bonus to Stealth checks, but a -1 penalty to Combat Manuever Bonus and Combat Manuever Defense)</span></p>
-            <p><strong>Speed: </strong> {{myRace.speed}} feet</p>
+            <span v-if="myRace.size == 'маленький'" class="caption"> <br></span></p>
+            <p><strong>Скорость: </strong> {{myRace.speed}} футов</p>
             <p>
-                <strong>Languages: </strong>
+                <strong>Языки: </strong>
                 <span v-for="language in myRace.languages" :key="'racial-language-' + language" class="csli">{{language}}</span>
             </p>
             <div v-if="intBonus > 0">
                 <p>
-                    <strong>Bonus Languages: </strong> 
-                    Because {{name}} is so intelligent, you may select {{intBonus}} bonus {{ intBonus == 1 ? 'language' : 'languages' }} for {{pronouns.them}} to learn.
+                    <strong>Бонусные языки: </strong> 
+                    Вы {{name}} настолько интеллектуальны, что можете позволить {{intBonus}} {{ intBonus == 1 ? 'бонусного языка' : 'бонусных языков' }} для {{pronouns.them}} изучения.
                 </p>
                 <div class="content box-shadow text-center">
                     <h4 class="ntm">Select up to {{intBonus}} bonus {{ intBonus == 1 ? 'language' : 'languages' }}.</h4>

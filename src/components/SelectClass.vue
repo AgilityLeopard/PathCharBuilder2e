@@ -2,7 +2,7 @@
 <template>
     <div id="select-abilities" class="main-col-content">
         <div class="content">
-            <h2 class="section-header">Which class do you favor?</h2>
+            <h2 class="section-header">Какой класс вы выбирите?</h2>
             <p>{{name}}'s class is one of {{pronouns.their}} most defining features. Здесь должен быть текст {{pronouns.their}} abilities and gives {{pronouns.them}} a specific role in any adventuring party.</p>
         </div>
         <div class="content box-shadow text-center">
@@ -30,7 +30,7 @@
         <div v-if="myKlass" class="content">
             <h2 class="klass-title cap">{{myKlass.name}}</h2>
             <p>{{myKlass.description}}</p>
-            <h3>Standard Traits</h3>
+            <h3>Стандратные особенности</h3>
             <div class="std-klass-traits">
                 <p class="std-klass-trait">
                     <strong  data-placement="top" data-toggle="tooltip" :title="'The amount of damage ' + name + ' can take'">Hit Points</strong>
@@ -126,7 +126,7 @@
             <p>
                 {{myKlass.name}} is {{name}}'s' favoured class. At first level and each time {{name}} levels up in this class {{pronouns.they}} will gain either a bonus hit point or a bonus skill point.
             </p>
-            <div class="content box-shadow text-center">
+            <!-- <div class="content box-shadow text-center">
                 <h4 class="ntm">Select a Favoured Class Bonus</h4>
                 <div class="radio-toolbar content">
                     <input 
@@ -136,7 +136,7 @@
                         id="favoured-klass-hp" 
                         value="hp" 
                         @change="$emit('set-favoured-klass', favouredKlass)">
-                    <label for="favoured-klass-hp">Bonus Hit Points
+                    <label for="favoured-klass-hp">Бонусные очки жизни
                     </label>
                     <input 
                         v-model="favouredKlass"
@@ -148,7 +148,7 @@
                     <label for="favoured-klass-sp">Bonus Skill Point
                     </label>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

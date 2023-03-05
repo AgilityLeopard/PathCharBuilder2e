@@ -12,17 +12,31 @@
             <div><strong>FFAC:</strong> {{ff}}</div>
         </div> -->
         <div style="display: flex; justify-content: space-between;">
-            <div><strong>Ref:</strong> {{ref}}</div>
-            <div><strong>Fort:</strong> {{fort}}</div>
-            <div><strong>Will:</strong> {{will}}</div>
+            <div><strong>Рефлекс:</strong> {{ref}}</div>
+            <div><strong>Стойкость:</strong> {{fort}}</div>
+            <div><strong>Воля:</strong> {{will}}</div>
         </div>
+
+
 
         <h5>Оборона</h5>
         <b>Скорость</b> {{ speed }}<br>
         <b>Ближний бой</b> {{ mab }}<br>
         <b>Дальний бой</b> {{ rab }}<br>
 
-        <h5>Abilities</h5>
+        <template v-if="myLanguages">
+            <h5>языки</h5>
+            <span 
+                v-for="language in myLanguages" 
+                :key="'preview-lang-traits-' + lang" 
+                class="preview__lang-trait csli"
+                data-toggle="tooltip" 
+                data-placement="top" 
+                :title="lang"
+            >{{language}}</span>
+        </template>
+
+        <h5>Способности</h5>
         <div class="preview__abilities hidden-md-down">
             <div v-for="(score, ability) in abilitiesFormatted" :key="'preview-desktop-' + ability" class="preview__ability">
                 <strong>{{ ability.substring( 0, 3 ) }}:</strong> {{ score }} ({{ calcBonus( score ) }})
@@ -87,7 +101,8 @@ export default {
         race: Object,
         klass: Object,
         favouredKlass: String,
-        feats: Array
+        feats: Array,
+        myLanguages: Array,
     },
     methods: {
         calcBonus: function( score ) {
@@ -182,6 +197,9 @@ export default {
         },
         speed: function() {
             return (this.race) ? this.race.speed : 30;
+        },
+        language: function() {
+            return (this.myLanguages);
         },
     }
 };

@@ -1,208 +1,208 @@
 {
-  "Appraise": {
-    "name": "Appraise",
-    "ability": "intelligence",
+  "Акробатика": {
+    "name": "Акробатика",
+    "ability": "ловкость",
 
-    "ranks": 0
+   "trained": false
   },
-  "Bluff": {
-    "name": "Bluff",
-    "ability": "charisma",
+  "Аркана": {
+    "name": "Аркана",
+    "ability": "интеллект",
 
-    "ranks": 0
+   "trained": false
   },
   "Climb": {
     "name": "Climb",
-    "ability": "strength",
+    "ability": "сила",
 
-    "ranks": 0
+   "trained": false
   },
   "Craft": {
     "name": "Craft",
-    "ability": "intelligence",
+    "ability": "интеллект",
 
-    "ranks": 0
+   "trained": false
   },
   "Diplomacy": {
     "name": "Diplomacy",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   },
   "Disable Device": {
     "name": "Disable Device",
-    "ability": "dexterity",
+    "ability": "ловкость",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Disguise": {
     "name": "Disguise",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   },
   "Escape Artist": {
     "name": "Escape Artist",
-    "ability": "dexterity",
+    "ability": "ловкость",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Fly": {
     "name": "Fly",
-    "ability": "dexterity",
+    "ability": "ловкость",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Handle Animal": {
     "name": "Handle Animal",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   },
   "Heal": {
     "name": "Heal",
-    "ability": "wisdom",
+    "ability": "мудрость",
 
-    "ranks": 0
+   "trained": false
   },
   "Intimidate": {
     "name": "Intimidate",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (arcana)": {
     "name": "Knowledge (arcana)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (dungeoneering)": {
     "name": "Knowledge (dungeoneering)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (engineering)": {
     "name": "Knowledge (engineering)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (local)": {
     "name": "Knowledge (local)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (nature)": {
     "name": "Knowledge (nature)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (nobility)": {
     "name": "Knowledge (nobility)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (planes)": {
     "name": "Knowledge (planes)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Knowledge (religion)": {
     "name": "Knowledge (religion)",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Linguistics": {
     "name": "Linguistics",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Perception": {
     "name": "Perception",
-    "ability": "wisdom",
+    "ability": "мудрость",
 
-    "ranks": 0
+   "trained": false
   },
   "Perform": {
     "name": "Perform",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   },
   "Profession": {
     "name": "Profession",
-    "ability": "wisdom",
+    "ability": "мудрость",
 
-    "ranks": 0
+   "trained": false
   },
   "Ride": {
     "name": "Ride",
-    "ability": "dexterity",
+    "ability": "ловкость",
 
-    "ranks": 0
+   "trained": false
   },
   "Sense Motive": {
     "name": "Sense Motive",
-    "ability": "wisdom",
+    "ability": "мудрость",
 
-    "ranks": 0
+   "trained": false
   },
   "Sleight of Hand": {
     "name": "Sleight of Hand",
-    "ability": "dexterity",
+    "ability": "ловкость",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Spellcraft": {
     "name": "Spellcraft",
-    "ability": "intelligence",
+    "ability": "интеллект",
     "trainedOnly": true,
 
-    "ranks": 0
+   "trained": false
   },
   "Stealth": {
     "name": "Stealth",
-    "ability": "dexterity",
+    "ability": "ловкость",
 
-    "ranks": 0
+   "trained": false
   },
   "Survival": {
     "name": "Survival",
-    "ability": "wisdom",
+    "ability": "мудрость",
 
-    "ranks": 0
+   "trained": false
   },
   "Swim": {
     "name": "Swim",
-    "ability": "strength",
+    "ability": "сила",
 
-    "ranks": 0
+   "trained": false
   },
   "Use Magic Device": {
     "name": "Use Magic Device",
-    "ability": "charisma",
+    "ability": "харизма",
 
-    "ranks": 0
+   "trained": false
   }
 }

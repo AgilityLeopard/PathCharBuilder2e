@@ -145,7 +145,9 @@ import CharismaDescription from "./ability-descriptions/CharismaDescription";
 
 export default {
   data: function () {
+ 
     return {
+      
       BaseBoost: {
         сила: 0,
         ловкость: 0,
@@ -154,6 +156,8 @@ export default {
         мудрость: 0,
         харизма: 0,
       },
+
+      
       NumberBoost: 0,
       pointLimit: 100,
       abilityHover: "",
@@ -215,6 +219,7 @@ export default {
         this.abilities[ability]++;
         this.abilities[ability]++;
         this.boosts[ability] = 2;
+        this.BaseBoost[ability] = 2;
         this.NumberBoost++;
       }
       this.$emit("set-abilities", this.abilities);
@@ -228,6 +233,7 @@ export default {
         this.abilities[ability]--;
         this.abilities[ability]--;
         this.boosts[ability] = 0;
+        this.BaseBoost[ability] = 0;
         this.NumberBoost--;
       }
       this.$emit("set-abilities", this.abilities);
