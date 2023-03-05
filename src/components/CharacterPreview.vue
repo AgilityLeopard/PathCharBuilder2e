@@ -4,23 +4,23 @@
         <strong v-if="race" class="cap">{{race.race}}</strong>
         <strong v-if="klass" class="cap">{{klass.name}}</strong>
 
-        <h5>Defense</h5>
-        <div><strong>HP</strong> {{hp}}</div>
-        <div style="display: flex; justify-content: space-between;">
+        <h5>Оборона</h5>
+        <div><strong>Хиты</strong> {{hp}}</div>
+        <!-- <div style="display: flex; justify-content: space-between;">
             <div><strong>AC:</strong> {{ac}}</div>
             <div><strong>TAC:</strong> {{touch}}</div>
             <div><strong>FFAC:</strong> {{ff}}</div>
-        </div>
+        </div> -->
         <div style="display: flex; justify-content: space-between;">
             <div><strong>Ref:</strong> {{ref}}</div>
             <div><strong>Fort:</strong> {{fort}}</div>
             <div><strong>Will:</strong> {{will}}</div>
         </div>
 
-        <h5>Offense</h5>
-        <b>Speed</b> {{ speed }}<br>
-        <b>Melee</b> {{ mab }}<br>
-        <b>Ranged</b> {{ rab }}<br>
+        <h5>Оборона</h5>
+        <b>Скорость</b> {{ speed }}<br>
+        <b>Ближний бой</b> {{ mab }}<br>
+        <b>Дальний бой</b> {{ rab }}<br>
 
         <h5>Abilities</h5>
         <div class="preview__abilities hidden-md-down">
@@ -35,7 +35,7 @@
         </div>
 
         <template v-if="race">
-            <h5>Racial Traits</h5>
+            <h5>Расовые черты</h5>
             <span 
                 v-for="(trait) in race.racialTraits" 
                 :key="'preview-racial-traits-' + trait.name" 
@@ -48,7 +48,7 @@
 
         
         <template v-if="klass">
-            <h5>Class Traits</h5>
+            <h5>Классовые черты</h5>
             <span 
                 v-for="(trait) in klass.abilities" 
                 :key="'preview-klass-traits-' + trait.name" 
@@ -60,7 +60,7 @@
         </template>
 
         <template v-if="feats">
-            <h5>Feats</h5>
+            <h5>Черты</h5>
             <span 
                 v-for="feat in feats" 
                 :key="'preview-feats-' + feat.name" 
