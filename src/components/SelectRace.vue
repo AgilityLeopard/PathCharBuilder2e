@@ -31,9 +31,9 @@
         <div v-if="myRace" class="content">
             <h2 class="race-title cap">{{myRace.race}}</h2>
             <p>{{myRace.description}}</p>
-            <h3>Standard Traits</h3>
+            <h3>Черты</h3>
             <p v-if="!myRace.freeAbility1" class="ability-bonuses">
-                <strong>Ability Scores:</strong>
+                <strong>Характеристики:</strong>
                 <span v-for="(mod, ability) in myRace.abilities" :key="'race-ability-bonus-' + ability">
                     <template v-if="mod > 0"> +{{mod}} {{ability}}, </template>
                 </span>
@@ -45,7 +45,7 @@
             <div v-else>
                 <p><strong>Очки характеристик:</strong> <span class="cap">{{myRace.plural}}</span> получают буст +2 на ваш выбор.</p>
                 <div v-if="myRace.freeAbility1" class="content box-shadow text-center" style="margin-bottom: 1rem;">
-                    <h4 class="ntm">Select an ability score.</h4>
+                    <h4 class="ntm">Выберите характеристику.</h4>
                     <div class="radio-toolbar select-race__select-ability content">
                     <template v-for="(score, ability) in myRace.abilities">
                         <input 
@@ -66,7 +66,7 @@
                 </div>
                 <p><strong>Очки характеристик:</strong> <span class="cap">{{myRace.plural}}</span> получают буст +2 на ваш выбор.</p>
                 <div v-if="myRace.freeAbility2" class="content box-shadow text-center" style="margin-bottom: 1rem;">
-                    <h4 class="ntm">Select an ability score.</h4>
+                    <h4 class="ntm">Выберите характеристику.</h4>
                     <div class="radio-toolbar select-race__select-ability content">
                     <template v-for="(score, ability) in myRace.abilities">
                         <input 
@@ -101,7 +101,7 @@
                     Вы {{name}} настолько интеллектуальны, что можете позволить {{intBonus}} {{ intBonus == 1 ? 'бонусного языка' : 'бонусных языков' }} для {{pronouns.them}} изучения.
                 </p>
                 <div class="content box-shadow text-center">
-                    <h4 class="ntm">Select up to {{intBonus}} bonus {{ intBonus == 1 ? 'language' : 'languages' }}.</h4>
+                    <h4 class="ntm">Выберите {{intBonus}} {{ intBonus == 1 ? 'бонусный язык' : 'бонусных языка' }}.</h4>
                     <div class="checkbox-toolbar">
                         <span v-for="language in myRace.bonusLanguages" :key="'bonus-language-' + language">
                             <input 
@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Racial Traits</h3>
+            <h3>Расовые черты</h3>
             <template v-if="myRace.racialTraits && myRace.racialTraits.length > 0">
                 <p v-for="trait in myRace.racialTraits" :key="'racial-trait-' + myRace.race + trait.name">
                     <strong>{{trait.name}}:</strong> {{trait.desc}}

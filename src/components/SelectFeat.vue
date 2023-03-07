@@ -3,10 +3,10 @@
     <div id="select-feats" class="main-col-content">
         <div class="content">
             <h2 class="section-header">Возьмите Черту!</h2>
-            <p>At level one, all adventurers gain a feat<span v-if="race.race === 'human'">. Так как {{name}} человек, {{pronouns.they}} может выбрать одну Черту</span>!</p>
+            <!-- <p>At level one, all adventurers gain a feat<span v-if="race.race === 'human'">. Так как {{name}} человек, {{pronouns.they}} может выбрать одну Черту</span>!</p> -->
         </div>
         <div class="content text-center box-shadow">
-            <h4>Выберите {{maxFeats}} {{maxFeats > 1 ? 'feats' : 'feat'}} из списка {{maxFeats > 1 ? 'categories' : 'category'}}.</h4>
+            <h4>Выберите {{maxFeats}} {{maxFeats > 1 ? 'черты' : 'черту'}} из списка {{maxFeats > 1 ? 'категорий' : 'категории'}}.</h4>
             <h3>Боевая черта</h3>
             <div class="checkbox-toolbar">
                 <span v-for="feat in featList.combat" :key="'feat-' + feat.name">
@@ -21,7 +21,7 @@
                     <label :for="'feat-checkbox-' + feat.name" class="feat-checkbox"><b>{{feat.name}}</b><br>{{feat.desc}}</label>
                 </span>
             </div>
-            <h3>Skill Feats</h3>
+            <h3>Черты навыка</h3>
             <div class="checkbox-toolbar">
                 <span v-for="feat in featList.skill" :key="'feat-' + feat.name">
                     <input 

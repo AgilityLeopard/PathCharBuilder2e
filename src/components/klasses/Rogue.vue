@@ -1,8 +1,8 @@
 <template>
     <div class="klass-specifics">
-        <h3>Sneak Attack</h3>
-        <p>Your attacks deal 1d6 extra damage anytime your target would be denied a Dexterity bonus to AC, or when you flank your target</p>
-        <h3>Trap Finding</h3>
-        <p>+1 to Perception checks made to locate traps and +1 to Disable Device checks. You can use Disable Device to disarm magic traps.</p>
+        <h3>Скрытая атака</h3>
+        <p>Ваши атаки наносят 1к6 дополнительного урона каждый раз, когда ваша цель лишена бонуса Ловкости к КД или когда вы обходите цель с фланга.</p>
+        <h3>Искатель ловушек</h3>
+        <p>+1 к проверкам Внимательности для обнаружения ловушек и +1 к проверкам Отключения Устройств. Вы можете использовать Обезвреживание Устройства, чтобы обезвредить магические ловушки.</p>
     </div>
 </template>

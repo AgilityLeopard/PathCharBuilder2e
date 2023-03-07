@@ -3,10 +3,10 @@
     <div id="select-abilities" class="main-col-content">
         <div class="content">
             <h2 class="section-header">Какой класс вы выбирите?</h2>
-            <p>{{name}}'s class is one of {{pronouns.their}} most defining features. Здесь должен быть текст {{pronouns.their}} abilities and gives {{pronouns.them}} a specific role in any adventuring party.</p>
+            <!-- <p>{{name}}'s class is one of {{pronouns.their}} most defining features. Здесь должен быть текст {{pronouns.their}} abilities and gives {{pronouns.them}} a specific role in any adventuring party.</p> -->
         </div>
         <div class="content box-shadow text-center">
-            <h4 class="ntm">Select a class.</h4>
+            <h4 class="ntm">Выберите класс.</h4>
             <div class="radio-toolbar select-race content">
                 <template v-for="(klass, klassName) in klasses">
                     <input 
@@ -30,56 +30,56 @@
         <div v-if="myKlass" class="content">
             <h2 class="klass-title cap">{{myKlass.name}}</h2>
             <p>{{myKlass.description}}</p>
-            <h3>Стандратные особенности</h3>
+            <h3>Стандартные особенности</h3>
             <div class="std-klass-traits">
                 <p class="std-klass-trait">
-                    <strong  data-placement="top" data-toggle="tooltip" :title="'The amount of damage ' + name + ' can take'">Hit Points</strong>
-                    <span  data-placement="top" data-toggle="tooltip" title="This value includes your Constitution modifier.">
+                    <strong  data-placement="top" data-toggle="tooltip" :title="'Количество ' + name + ' имеющихся сейчас'">Хиты</strong>
+                    <span  data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Телосложения.">
                         {{hp}}
                     </span>
                 </p>
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" :title="'The accuracy of ' + pronouns.their + ' hand-to-hand attacks'">Melee Attack Bonus:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Strength modifier.">
+                    <strong data-placement="top" data-toggle="tooltip" :title="'Значение ' + pronouns.their + ' ближней атаки'">Ближний бой:</strong>
+                    <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Силы.">
                         {{mab}}
                     </span>
                 </p>
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" :title="'The accuracy of ' + pronouns.their + ' ranged attacks'">Ranged Attack Bonus:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Dexterity modifier.">
+                    <strong data-placement="top" data-toggle="tooltip" :title="'Значение ' + pronouns.their + ' дальнобойной атаки'">Дальний бой:</strong>
+                    <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Ловкости.">
                         {{rab}}
                     </span>
                 </p>
             </div>
             <div class="std-klass-traits">
                 <p class="std-klass-trait" data-placement="top" data-toggle="tooltip" title="">
-                    <strong>Reflex:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Dexterity modifier.">
+                    <strong>Рефлекс:</strong>
+                    <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Ловкости.">
                         {{ref}}
                     </span>
                 </p>
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" title="">Fortitude:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Constitution modifier.">
+                    <strong data-placement="top" data-toggle="tooltip" title="">Стойкость:</strong>
+                    <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Телосложения.">
                         {{fort}}
                     </span>
                 </p>
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" title="">Will:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Wisdom modifier.">
+                    <strong data-placement="top" data-toggle="tooltip" title="">Воля:</strong>
+                    <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Мудрости.">
                         {{will}}
                     </span>
                 </p>
             </div>
             <div class="std-klass-traits">
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" title="You will be able to train this number of skills.">Skill Points:</strong>
-                    <span data-placement="top" data-toggle="tooltip" title="This value includes your Intelligence modifier.">
+                    <!-- <strong data-placement="top" data-toggle="tooltip" title="You will be able to train this number of skills.">Skill Points:</strong> -->
+                    <!-- <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Интеллекта.">
                         {{skillPoints}}
-                    </span>
+                    </span> -->
                 </p>
                 <p class="std-klass-trait std-klass-trait--class-skills">
-                    <strong data-placement="top" data-toggle="tooltip" title="If you train any of these skills, you will gain an additional +3 bonus in that skill.">Class Skills:</strong>
+                    <strong data-placement="top" data-toggle="tooltip" title="Если вы тренируете любой из этих навыков, вы получите дополнительный бонус +3 к этому навыку.">Классовые навыки:</strong>
                     <span class="no-hover">
                         <span v-for="skill in myKlass.classSkills" :key="skill" class="csli">
                             {{skill}}</span>
@@ -88,13 +88,13 @@
             </div>
             <div class="std-klass-traits">
                 <p class="std-klass-trait">
-                    <strong data-placement="top" data-toggle="tooltip" title="You will be able to spend this on equipment.">Starting Wealth:</strong>
+                    <strong data-placement="top" data-toggle="tooltip" title="Вы сможете потратить это на оборудование.">Стартовое богатство:</strong>
                     <span class="no-hover">
-                        {{myKlass.gold}} gold pieces
+                        {{myKlass.gold}} золотых монет
                     </span>
                 </p>
             </div>
-            <h3>Weapon and Armor Proficiencies</h3>
+            <h3>Оружие и доспехи</h3>
                     <p>{{myKlass.proficiencyDescription}}</p>
             
             <fighter v-if="myKlass.name == 'Fighter'"></fighter>
@@ -122,10 +122,10 @@
                 :abilities="abilities">
             </wizard>
 
-            <h3>Favoured Class Bonus</h3>
-            <p>
+            <!-- <h3>Favoured Class Bonus</h3> -->
+            <!-- <p>
                 {{myKlass.name}} is {{name}}'s' favoured class. At first level and each time {{name}} levels up in this class {{pronouns.they}} will gain either a bonus hit point or a bonus skill point.
-            </p>
+            </p> -->
             <!-- <div class="content box-shadow text-center">
                 <h4 class="ntm">Select a Favoured Class Bonus</h4>
                 <div class="radio-toolbar content">
@@ -193,11 +193,11 @@ export default {
     },
     computed: {
         hp: function () {
-            let hp = parseInt(this.myKlass.hp) + parseInt(this.calcBonus(this.abilities.constitution));
+            let hp = parseInt(this.myKlass.hp) + parseInt(this.calcBonus(this.abilities.телосложение));
             return ( 'hp' === this.favouredKlass ) ? hp + 1 : hp;
         },
         mab: function() {
-            let mab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.strength));
+            let mab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.сила));
             if ( mab > 0) {
                 return '+' + mab;
             }
@@ -206,7 +206,7 @@ export default {
             }
         },
         rab: function() {
-            let rab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.dexterity));
+            let rab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.ловкость));
             if ( rab > 0) {
                 return '+' + rab;
             }
@@ -216,7 +216,7 @@ export default {
         },
         ref: function() {
             let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let ref = parseInt(this.myKlass.ref) + parseInt(this.calcBonus(this.abilities.dexterity)) + racialBonus;
+            let ref = parseInt(this.myKlass.ref) + parseInt(this.calcBonus(this.abilities.ловкость)) + racialBonus;
             if ( ref > 0) {
                 return '+' + ref;
             }
@@ -226,7 +226,7 @@ export default {
         },
         fort: function() {
             let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let fort = parseInt(this.myKlass.fort) + parseInt(this.calcBonus(this.abilities.constitution)) + racialBonus;
+            let fort = parseInt(this.myKlass.fort) + parseInt(this.calcBonus(this.abilities.телосложение)) + racialBonus;
             if ( fort > 0) {
                 return '+' + fort;
             }
@@ -236,7 +236,7 @@ export default {
         },
         will: function() {
             let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let will = parseInt(this.myKlass.will) + parseInt(this.calcBonus(this.abilities.wisdom)) + racialBonus;
+            let will = parseInt(this.myKlass.will) + parseInt(this.calcBonus(this.abilities.мудрость)) + racialBonus;
             if ( will > 0) {
                 return '+' + will;
             }
@@ -245,7 +245,7 @@ export default {
             }
         },
         skillPoints: function() {
-            let skills = parseInt(this.myKlass.skillPoints) + parseInt(this.calcBonus(this.abilities.intelligence));
+            let skills = parseInt(this.myKlass.skillPoints) + parseInt(this.calcBonus(this.abilities.интеллект));
             skills = ('human' === this.race.race) ? skills + 1 : skills;
             if ( skills > 0) {
                 return ( 'sp' === this.favouredKlass ) ? skills + 1 : skills;

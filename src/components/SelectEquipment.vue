@@ -2,34 +2,34 @@
 <template>
     <div id="select-equipment" class="main-col-content">
         <div class="content">
-            <h2 class="section-header">Pick out some equipment for your hero!</h2>
-            <h3>Gold: {{gold}}</h3>
-            <h3>Weapons</h3>
-            <h3>Armor</h3>
+            <h2 class="section-header">В разработке!</h2>
+            <h3>Золото: {{gold}}</h3>
+            <h3>Оружие</h3>
+            <h3>Доспехи</h3>
                 <div class="radio-toolbar select-armor content">
-                    <template v-for="armor in armors">
+                    <template v-for="armor in armors" >
                         <input 
                             v-model="deity" 
-                            :key="armor.name + '-input'" 
+                            
                             type="radio" 
                             :name="armor.name + '-input'" 
                             :id="'select-deity-' + deityName" 
                             :value="myArmor" 
-                            @change="updateArmor"
+                            
                         >
-                        <label :key="armor.name + '-input'" for="armor.name + '-input'">
+                        <label  for="armor.name + '-input'">
                             <b>{{armor.name}}</b><br>                    
-                            <b>Armor Bonus</b> {{armor.bonus}}<br>
-                            <b>Max Dex</b> {{armor.dex}}<br>
-                            <b>Type</b> {{armor.type}}<br>
-                            <b>Cost</b> {{armor.cost}}gp<br>
-                            <b>Armor Check Penality</b> {{armor.acp}}
-                            <b>Weight</b> {{armor.weight}}
+                            <b>Бонус Доспеха</b> {{armor.bonus}}<br>
+                            <b>Максимальный бонус Ловкости</b> {{armor.dex}}<br>
+                            <b>Тип</b> {{armor.type}}<br>
+                            <b>Стоимость</b> {{armor.cost}} зм<br>
+                            <b>Пенальти Доспеха</b> {{armor.acp}}
+                            <b>Вес</b> {{armor.weight}}
                         </label>
                     </template>
                 </div>
-            <h3>Sheild</h3>
-            <h3>Gear</h3>
+            <h3>Щит</h3>
+            <h3>Снаряжение</h3>
         </div>
     </div>
 </template>
@@ -56,7 +56,7 @@ export default {
         gold: function() {
             let gold = this.klass.gold;
             let armor = this.myArmor ? this.myArmor.cost : 0;
-            return gold - armor;
+            return gold;
         }
     },
     methods: {

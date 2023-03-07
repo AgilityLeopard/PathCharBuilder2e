@@ -10,7 +10,7 @@
 		"size": "Средний",
 		"speed": 25 ,
 		"languages": ["Всеобщий"],
-		"bonusLanguages": ["Abyssal", "Aklo", "Aquan", "Auran", "Celestial", "Draconic", "Dwarven", "Elven", "Ignan", "Infernal ", "Giant", "Gnome", "Goblin", "Halfling", "Orc", "Sylvan", "Terran", "Undercommon"],
+		"bonusLanguages": ["Бездны", "Акло", "AАкванquan", "Ауран", "Небесный", "Драконий", "Дварфийский", "Эльфийский", "Игнан", "Инфернальный ", "Гигантский", "Гномский", "Гоблинский", "Полуросличий", "Орский", "Сильван", "Терран", "Подземный"],
 		"racialTraits": [],
 		"bonuses": {
 
@@ -25,28 +25,28 @@
 		"freeAbility1": true,
 		"size": "Средний",
 		"speed": 30,
-		"languages": ["Common", "Elven"],
+		"languages": ["Всеобщий", "Эльфийский"],
 		"bonusLanguages": ["Небесный", "Драконий", "Гнольский", "Гномский", "Гоблинский", "Орочий", "Сильван"],
 		"racialTraits": [
 			{
-				"name": "Elven Immunities",
-				"desc": "Immune to magic sleep effects and +2 bonus on saving throws against enchantments"
+				"name": "Эльфийский иммунитет",
+				"desc": "Иммунитет к эффектам магического сна и бонус +2 к спасброскам от чар."
 			},
 			{
-				"name": "Keen Senses",
-				"desc": "+2 bonus on Perception checks"
+				"name": "Острый глаз",
+				"desc": "+2 к Восприятию"
 			},
 			{
-				"name": "Elven Magic",
-				"desc": "+2 bonus on caster level checks made to overcome spell resistance. And +2 racial bonus on Spellcraft checks to identify the properties of magic items"
+				"name": "Эльфийская магия",
+				"desc": "Бонус +2 к проверкам уровня заклинателя, сделанным для преодоления сопротивления заклинаниям. И расовый бонус +2 к проверкам Колдовства для определения свойств магических предметов."
 			},
 			{
-				"name": "Elven Weapon Familiarity",
-				"desc": "Proficiency with longbows, longswords, rapiers, and shortbows, and treat any weapon with a the word \"elven\" in its name as a martial weapon."
+				"name": "Эльфийское оружие",
+				"desc": "Владение длинными луками, длинными мечами, рапирами, и короткими луками, и владение любым оружием с трейтом \"эльфийское\"."
 			},
 			{
-				"name": "Low Light Vision",
-				"desc": "Can see twice as far as humans in conditions of dim light"
+				"name": "Сумеречное зрение",
+				"desc": "Может видеть в тусклом свете"
 			}
 		],
 		"bonuses": {
@@ -55,144 +55,20 @@
 		"conditionalBonuses": {
 			"spellcraft": {
 				"bonus": 2,
-				"condition": "to identify the properties of of magic items"
+				"condition": "к идентификации предмета"
 			},
 			"casterLevel": {
 				"bonus": 2,
-				"condition": "to overcome spell resistance"
+				"condition": "сопротивление заклинаниям"
 			},
 			"saves": {
 				"bonus": 2,
-				"condition": "against enchantments"
+				"condition": "против очарования"
 			}
 		},
 		"proficiencies": {
-			"weapon": ["longbow", "longsword", "rapier", "shortbow"]
+			"weapon": ["длинный лук", "длинный меч", "рапира", "короткий лук"]
 		}
-	},
-	"dwarf": {
-		"race": "dwarf",
-		"plural": "dwarves",
-		"image" : "dwarf.png",
-		"abilities": { "сила": 0, "ловкость": 0, "телосложение": 2, "интеллект": 0, "мудрость": 2, "харизма": -2 },
-		"freeAbility1": true,
-		"freeAbility2": false,
-		"size": "Medium",
-		"speed": 20,
-		"languages": ["Common", "Dwarven"],
-		"bonusLanguages": ["Giant", "Gnome", "Goblin", "Orc", "Terran", "Undercommon"],
-		"racialTraits": [
-			{
-				"name": "Defensive Training",
-				"desc": "+4 dodge bonus to AC against giants"
-			},
-			{
-				"name": "Hardy",
-				"desc": "+2 bonus on saving throws against poison, spells, and spell-like abilities"
-			},
-			{
-				"name": "Stabilitiy",
-				"desc": "+4 racial bonus to Combat Maneuver Defense when resisting a bullrush or trip"
-			},
-			{
-				"name": "Greed",
-				"desc": "+2 racial bonus on Appraise checks made to determine the price of non-magical goods that contian precious metals or gemstones"
-			},
-			{
-				"name": "Stonecunning",
-				"desc": "+2 bonus on perception checks to notice unusual stonework"
-			},
-			{
-				"name": "Hatred",
-				"desc": "+1 bonus on attack rolls against orcs and goblins"
-			},
-			{
-				"name": "Dwarven Weapon Familiarity",
-				"desc": "Proficiency with battleaxes, heavy picks, and warhammers, and treat any weapon with the word \"dwarven\" in its name as a martial weapon."
-			},
-			{
-				"name": "Darkvision",
-				"desc": "Can see perfectly in the dark up to 60 feet."
-			}
-		],
-		"bonuses": {
-		},
-		"conditionalBonuses": {
-			"ac": {
-				"bonus": 4,
-				"condition": "against giants"
-			},
-			"saves": {
-				"bonus": 2,
-				"condition": "against poison, spells, and spell-like abilities"
-			},
-			"cmd": {
-				"bonus": 4,
-				"condition": "against bullrush or trip attempts"
-			},
-			"attack": {
-				"bonus": 1,
-				"condition": "against goblins and orcs"
-			},
-			"appraise": {
-				"bonus": 2,
-				"condition": "to determine the price of non-magical goods that contian precious metals or gemstones"
-			},
-			"perception": {
-				"bonus": 2,
-				"condition": "to notice unusual stonework"
-			}
-		},
-		"proficiencies": {
-			"weapon": ["battleaxe", "heavy pick", "warhammer"]
-		}
-	},
-	"halfling": {
-		"race": "halfling",
-		"plural": "halflings",
-		"image" : "halfling.png",
-		"abilities": { "сила": -2, "ловкость": 2, "телосложение": 0, "интеллект": 0, "мудрость": 0, "харизма": 2 },
-		"freeAbility": false,
-		"size": "Small",
-		"speed": 20,
-		"languages": ["Common", "Halfling"],
-		"bonusLanguages": ["Dwarven", "Elven", "Gnome", "Goblin"],
-		"racialTraits": [
-			{
-				"name": "Halfling Luck",
-				"desc": "+1 on all saving throws"
-			},
-			{
-				"name": "Fearless",
-				"desc": "+2 on saving throws against fear (this stacks with Halfling Luck)"
-			},
-			{
-				"name": "Keen Senses",  
-				"desc": "+2 bonus on Perception checks"
-			},
-			{
-				"name": "Sure-Footed",
-				"desc": "+2 bonus on Acrobatics and Climb checks"
-			},
-			{
-				"name": "Weapon Familiarity",
-				"desc": "Proficiency with slings and treat any weapon with the word \"halfling\" in its name as a martial weapon"
-			}
-		],
-		"bonuses": {
-			"acrobatics": 2,
-			"climb": 2,
-			"perception": 2,
-			"saves": 1
-		},
-		"conditionalBonuses": {
-			"saves": {
-				"bonus": 2,
-				"condition": "against fear"
-			}
-		},
-		"proficiencies": {
-			"weapon": ["battleaxe", "heavy pick", "warhammer"]
-		}
+	
 	}
 }

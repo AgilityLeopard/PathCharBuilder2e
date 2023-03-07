@@ -1,9 +1,9 @@
 <template>
     <div class="klass-specifics">
-        <h3>Combat Feat</h3>
-        <p>As a Fighter, you gain a bonus combat feat</p>
+        <h3>Боевые Черты</h3>
+        <p>Как Боец, вы получаете дополнительное боевое умение</p>
         <div class="content box-shadow text-center">
-            <h4 class="ntm">Select a combat feat.</h4>
+            <h4 class="ntm">Выберите Боевую черту</h4>
         </div>
     </div>
 </template>

@@ -11,7 +11,7 @@
       <div class="row">
         <table class="skill-controls">
           <tr class="skill-controls__headings text-center">
-            <th class="text-left">Skill</th>
+            <th class="text-left">Навыки</th>
             <!-- <th>Class Skill</th> -->
             <th>Характеристика</th>
             <th>Модификатор</th>
