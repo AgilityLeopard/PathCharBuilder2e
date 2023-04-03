@@ -1,9 +1,9 @@
 <template>
     <div class="klass-specifics">
         <h3>Боевые Черты</h3>
-        <p>Как Боец, вы получаете дополнительное боевое умение</p>
+        <p>На первом уровне вам доступны черты.</p>
         <div class="content box-shadow text-center">
-            <h4 class="ntm">Выберите Боевую черту</h4>
+            <h4 class="ntm">Выберите черту Воина</h4>
         </div>
     </div>
 </template>

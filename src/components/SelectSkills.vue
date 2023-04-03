@@ -5,9 +5,26 @@
       <h2 class="section-header"></h2>
       <p></p>
       <p></p>
-      <p>Y</p>
+      <p>У вас есть {{ skillPoints }}</p>
     </div>
     <div class="content box-shadow text-center">
+      <div class="content box-shadow text-center">
+                    <h4 class="ntm">Выберите Классовые навыки</h4>
+                    <div class="checkbox-toolbar">
+                        <span v-for="classSkill in klass.classSkills" :key="'bonus-skills-' + classSkill">
+                            <input 
+                                type="checkbox" 
+                                :id="'classSkill-checkbox-' + classSkill" 
+                                :value="classSkill" 
+                                v-model="trainedSkills"  
+                                :disabled="trainedSkills.length >= 1 && trainedSkills.indexOf( classSkill ) === -1" 
+                                @change="$emit( 'set-my-classSkill', trainedSkills ); updateSkill()"
+                                />
+                            <label :for="'classSkill-checkbox-' + classSkill">{{classSkill}}</label>
+                        </span>
+                    </div>
+                </div>
+      
       <div class="row">
         <table class="skill-controls">
           <tr class="skill-controls__headings text-center">
@@ -42,12 +59,15 @@
               <td>{{ calcBonus(abilities[skill.ability]) }}</td>
               <!-- <td>0</td> -->
               <td>
-                <div class="pretty p-switch" style="font-size: 2rem">
+                <div class="pretty p-icon p-curve p-pulse" style="font-size: 2rem">
                   <input
                     type="checkbox"
+                    :id="skill.name" 
                     v-model="skill.trained"
                     :value="skill"
+
                     @change='updateCalc(skill)'
+                    :disabled="skillNumber >= skillPoints && skill.trained == false"
                     
                   />
                   <!-- <div v-if="checked" style="color:#060;">                
@@ -79,22 +99,51 @@ import skillData from "../data/skills.json";
 export default {
   data: function () {
     return {
+      myskills: null,
       skillList: skillData,
       trainedSkills: [],
-      SkillNumber: 0,
+      skillNumber: 0,
+      Skill: "",
+      Profiency: {
+                Trained: 2,
+                Expert: 4,
+                Master: 6,
+                Legenda: 8,
+      },
     };
   },
-
   props: {
-    skillPoints: 0,
     race: Object,
     klass: Object,
     abilities: Object,
     name: String,
     pronouns: Object,
+    skills: Object,
   },
-  computed: {},
+  computed: {
+    skillPoints: function() {
+            return parseInt(this.klass.skillPoints) + parseInt(this.calcBonus(this.abilities.интеллект));;
+            
+        }
+  },
   methods: {
+    updateSkill: function () {
+      let name = this.skillList[this.trainedSkills[0]] ? this.skillList[this.trainedSkills[0]].name : 0;   
+      if(this.trainedSkills[0] == name)
+      {
+        document.getElementById(name).disabled = true;
+        this.Skill = name;
+        this.skillList[this.trainedSkills[0]].trained = true;
+        // return true;
+      }
+      else
+      {
+        document.getElementById(this.Skill).disabled = false;
+        this.skillList[this.Skill].trained = false;
+        
+        // return false;
+      }
+    },
     calcBonus: function (score) {
       var bonus = Math.floor((score - 10) / 2);
       if (bonus > 0) {
@@ -103,6 +152,11 @@ export default {
         return bonus;
       }
     },
+    calcProf: function ( prof )
+        {
+            return this.Profiency[prof];
+
+        },
     calcSkill: function (skill) {
       let abilityBonus = this.calcBonus(this.abilities[skill.ability]);
       let raceBonus = 0;
@@ -110,6 +164,7 @@ export default {
       let klassSkill = this.isKlassSkill(skill.name);
       let trained = this.trainedSkills.indexOf(skill) > -1;
 
+      
 
       let bonus = Number(abilityBonus);
       if(skill.trained == true)
@@ -117,33 +172,49 @@ export default {
         bonus = bonus + 3;
         // NumberSkill++;
       }
-    
+      this.skills[skill.name] = bonus;
       // NumberSkill--;
 
 
       return bonus;
     },
-    isKlassSkill: function (skillName) {
-      return this.klass.classSkills.includes(skillName);
+    isKlassSkill: function (skill) {
+      if (skill.trained) {
+        this.skillNumber--;
+        let abilityBonus = this.calcBonus(this.abilities[skill.ability]);
+
+        let bonus = Number(abilityBonus);
+        this.skills[skill.name] = bonus + 3;
+        return false;
+    }
+      else{
+        let abilityBonus = this.calcBonus(this.abilities[skill.ability]);
+        let bonus = Number(abilityBonus);
+        this.skills[skill.name] = bonus;
+      }
     },
     updateCalc: function (skill) {
       let abilityBonus = this.calcBonus(this.abilities[skill.ability]);
 
       let bonus = Number(abilityBonus);
+ 
+    if (skill.trained) {
+      
+      this.skillNumber++;
+    } else {
+      this.skillNumber--;
+    }
+
 
       if(skill.trained == true)
       {
         bonus = bonus + 3;
         // NumberSkill++;
       }
-     
-
-      
-      console.log(skill.trained);
-      
-   
+      this.skills[skill.name] = bonus;
       return bonus;
     },
+
   },
 };
 </script>

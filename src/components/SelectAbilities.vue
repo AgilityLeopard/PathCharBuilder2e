@@ -148,14 +148,14 @@ export default {
  
     return {
       
-      BaseBoost: {
-        сила: 0,
-        ловкость: 0,
-        телосложение: 0,
-        интеллект: 0,
-        мудрость: 0,
-        харизма: 0,
-      },
+      // BaseBoost: {
+      //   сила: 0,
+      //   ловкость: 0,
+      //   телосложение: 0,
+      //   интеллект: 0,
+      //   мудрость: 0,
+      //   харизма: 0,
+      // },
 
       
       NumberBoost: 0,
@@ -167,7 +167,7 @@ export default {
     abilities: Object,
     name: String,
     pronouns: Object,
-    boosts: Object,
+
   },
   components: {
     StrengthDescription,
@@ -188,13 +188,14 @@ export default {
     },
     boosts: function () {
       return {
-        сила: this.BaseBoost.сила,
-        ловкость: this.BaseBoost.ловкость,
-        телосложение: this.BaseBoost.телосложение,
-        интеллект: this.BaseBoost.интеллект,
-        мудрость: this.BaseBoost.мудрость,
-        харизма: this.BaseBoost.харизма,
+        сила: 0,
+        ловкость: 0,
+        телосложение: 0,
+        интеллект: 0,
+        мудрость: 0,
+        харизма: 0,
       };
+      
     },
   },
   methods: {
@@ -219,7 +220,7 @@ export default {
         this.abilities[ability]++;
         this.abilities[ability]++;
         this.boosts[ability] = 2;
-        this.BaseBoost[ability] = 2;
+        // this.BaseBoost[ability] = 2;
         this.NumberBoost++;
       }
       this.$emit("set-abilities", this.abilities);
@@ -233,7 +234,7 @@ export default {
         this.abilities[ability]--;
         this.abilities[ability]--;
         this.boosts[ability] = 0;
-        this.BaseBoost[ability] = 0;
+        // this.BaseBoost[ability] = 0;
         this.NumberBoost--;
       }
       this.$emit("set-abilities", this.abilities);

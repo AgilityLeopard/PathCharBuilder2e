@@ -38,7 +38,7 @@
                         {{hp}}
                     </span>
                 </p>
-                <p class="std-klass-trait">
+                <!-- <p class="std-klass-trait">
                     <strong data-placement="top" data-toggle="tooltip" :title="'Значение ' + pronouns.their + ' ближней атаки'">Ближний бой:</strong>
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Силы.">
                         {{mab}}
@@ -49,7 +49,7 @@
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Ловкости.">
                         {{rab}}
                     </span>
-                </p>
+                </p> -->
             </div>
             <div class="std-klass-traits">
                 <p class="std-klass-trait" data-placement="top" data-toggle="tooltip" title="">
@@ -71,6 +71,7 @@
                     </span>
                 </p>
             </div>
+           
             <div class="std-klass-traits">
                 <p class="std-klass-trait">
                     <!-- <strong data-placement="top" data-toggle="tooltip" title="You will be able to train this number of skills.">Skill Points:</strong> -->
@@ -168,7 +169,13 @@ export default {
         return {
             myKlass: null,
             klasses: klassData,
-            favouredKlass: ''
+            favouredKlass: '',
+            Profiency: {
+                Trained: 2,
+                Expert: 4,
+                Master: 6,
+                Legenda: 8,
+      },
         };
     },
     props: {
@@ -177,6 +184,7 @@ export default {
         race: Object,
         name: String,
         pronouns: Object,
+        level: Number,
     },
     components: {
         Fighter,
@@ -196,27 +204,31 @@ export default {
             let hp = parseInt(this.myKlass.hp) + parseInt(this.calcBonus(this.abilities.телосложение));
             return ( 'hp' === this.favouredKlass ) ? hp + 1 : hp;
         },
-        mab: function() {
-            let mab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.сила));
-            if ( mab > 0) {
-                return '+' + mab;
-            }
-            else {
-                return mab;
-            }
-        },
-        rab: function() {
-            let rab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.ловкость));
-            if ( rab > 0) {
-                return '+' + rab;
-            }
-            else {
-                return rab;
-            }
-        },
+        // mab: function() {
+        //     let mab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.сила));
+        //     if ( mab > 0) {
+        //         return '+' + mab;
+        //     }
+        //     else {
+        //         return mab;
+        //     }
+        // },
+        // rab: function() {
+        //     let rab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.ловкость));
+        //     if ( rab > 0) {
+        //         return '+' + rab;
+        //     }
+        //     else {
+        //         return rab;
+        //     }
+        // },
         ref: function() {
-            let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let ref = parseInt(this.myKlass.ref) + parseInt(this.calcBonus(this.abilities.ловкость)) + racialBonus;
+            // let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
+            let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.ref]) : 0;
+            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
+            // let ref = parseInt(this.calcProf(this.myKlass.ref));
+            console.log(parseInt(this.level));
+
             if ( ref > 0) {
                 return '+' + ref;
             }
@@ -225,8 +237,8 @@ export default {
             }
         },
         fort: function() {
-            let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let fort = parseInt(this.myKlass.fort) + parseInt(this.calcBonus(this.abilities.телосложение)) + racialBonus;
+            let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.fort]) : 0;
+            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
             if ( fort > 0) {
                 return '+' + fort;
             }
@@ -235,23 +247,13 @@ export default {
             }
         },
         will: function() {
-            let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
-            let will = parseInt(this.myKlass.will) + parseInt(this.calcBonus(this.abilities.мудрость)) + racialBonus;
+            let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.will]) : 0;
+            let will = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
             if ( will > 0) {
                 return '+' + will;
             }
             else {
                 return will;
-            }
-        },
-        skillPoints: function() {
-            let skills = parseInt(this.myKlass.skillPoints) + parseInt(this.calcBonus(this.abilities.интеллект));
-            skills = ('human' === this.race.race) ? skills + 1 : skills;
-            if ( skills > 0) {
-                return ( 'sp' === this.favouredKlass ) ? skills + 1 : skills;
-            }
-            else {
-                return ( 'sp' === this.favouredKlass ) ? 2 : 1;
             }
         },
     },
@@ -266,6 +268,11 @@ export default {
             } else {
                 return bonus;
             }
+        },
+        calcProf: function ( prof )
+        {
+            return this.Profiency[prof];
+
         },
         setDeity: function( value ) {
             this.myKlass.deity = value;

@@ -95,13 +95,13 @@
                 <strong>Языки: </strong>
                 <span v-for="language in myRace.languages" :key="'racial-language-' + language" class="csli">{{language}}</span>
             </p>
-            <div v-if="intBonus > 0">
+            <div v-if="intBonus + myRace.bonusNumberLang > 0 ">
                 <p>
                     <strong>Бонусные языки: </strong> 
                     Вы {{name}} настолько интеллектуальны, что можете позволить {{intBonus}} {{ intBonus == 1 ? 'бонусного языка' : 'бонусных языков' }} для {{pronouns.them}} изучения.
                 </p>
                 <div class="content box-shadow text-center">
-                    <h4 class="ntm">Выберите {{intBonus}} {{ intBonus == 1 ? 'бонусный язык' : 'бонусных языка' }}.</h4>
+                    <h4 class="ntm">Выберите {{intBonus + myRace.bonusNumberLang}} {{ intBonus + myRace.bonusNumberLang == 1 ? 'бонусный язык' : 'бонусных языка' }}.</h4>
                     <div class="checkbox-toolbar">
                         <span v-for="language in myRace.bonusLanguages" :key="'bonus-language-' + language">
                             <input 
@@ -109,7 +109,7 @@
                                 :id="'language-checkbox-' + language" 
                                 :value="language" 
                                 v-model="checkedLanguages" 
-                                :disabled="checkedLanguages.length >= intBonus && checkedLanguages.indexOf( language ) === -1" 
+                                :disabled="checkedLanguages.length >= intBonus + myRace.bonusNumberLang && checkedLanguages.indexOf( language ) === -1" 
                                 @change="$emit( 'set-my-languages', myRace.languages.concat( checkedLanguages ) )"
                             >
                             <label :for="'language-checkbox-' + language">{{language}}</label>
@@ -140,7 +140,8 @@ export default {
             BoostAbility2: "",
             freeAbility2: "",
             freeAbility1: "",
-            checkedLanguages: []
+            checkedLanguages: [],
+            RaceSkill: null
         };
     },
     props: {
@@ -170,16 +171,25 @@ export default {
             this.checkedLanguages = [];
             this.freeAbility1 = null;
             this.freeAbility2 = null;
+            this.RaceSkill = this.myRace.raceBuild;
             this.$emit('set-race', this.myRace);
         },
         updateFreeAbility1: function() {
+
+            //Нужно перера
              if ( this.myRace.freeAbility1 ) {
-                 for (let ability in this.myRace.abilities){
+                 for (let ability in this.myRace.abilities){ 
                      if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility2){
-                         this.myRace.abilities[ability] = 0;
+                        if(this.RaceSkill[ability] == 0)
+                            this.myRace.abilities[ability] = 0;
                      }
                  }
-                this.myRace.abilities[ this.freeAbility1 ] = 2;
+
+                 if (this.RaceSkill[this.freeAbility1] == 0)
+                 {
+                    this.myRace.abilities[ this.freeAbility1 ] = 2;
+                 }
+                
              
              }
         },
@@ -187,10 +197,15 @@ export default {
             if ( this.myRace.freeAbility2 ) {
                  for (let ability in this.myRace.abilities){
                      if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility1){
-                         this.myRace.abilities[ability] = 0;
+                        if(this.RaceSkill[ability] == 0)
+                            this.myRace.abilities[ability] = 0;
                      }
                  }
-                this.myRace.abilities[ this.freeAbility2 ] = 2;
+
+                 if (this.RaceSkill[this.freeAbility2] == 0)
+                 {
+                    this.myRace.abilities[ this.freeAbility2 ] = 2;
+                 }
              }
         }
     }

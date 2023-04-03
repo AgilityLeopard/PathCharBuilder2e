@@ -2,14 +2,97 @@
   "Акробатика": {
     "name": "Акробатика",
     "ability": "ловкость",
-
+    "value": 0,
    "trained": false
   },
   "Аркана": {
     "name": "Аркана",
     "ability": "интеллект",
-
+    "value": 0,
    "trained": false
-  }
-  
+  },
+  "Атлетика": {
+    "name": "Атлетика",
+    "ability": "сила",
+    "value": 0,
+   "trained": false
+  },
+  "Ремесло": {
+    "name": "Ремесло",
+    "ability": "интеллект",
+    "value": 0,
+   "trained": false
+  },
+  "Обман": {
+    "name": "Обман",
+    "ability": "харизма",
+    "value": 0,
+   "trained": false
+  },
+  "Дипломатия": {
+    "name": "Дипломатия",
+    "ability": "харизма",
+    "value": 0,
+   "trained": false
+  },
+  "Запугивание": {
+    "name": "Запугивание",
+    "ability": "харизма",
+    "value": 0,
+   "trained": false
+  },
+  "Медицина": {
+    "name": "Медицина",
+    "ability": "мудрость",
+    "value": 0,
+   "trained": false
+  },
+  "Природа": {
+    "name": "Природа",
+    "ability": "мудрость",
+    "value": 0,
+   "trained": false
+  },
+  "Оккультизм": {
+    "name": "Оккультизм",
+    "ability": "интеллект",
+    "value": 0,
+   "trained": false
+  },
+  "Выступление": {
+    "name": "Выступление",
+    "ability": "харизма",
+    "value": 0,
+   "trained": false
+  },
+  "Религия": {
+    "name": "Религия",
+    "ability": "мудрость",
+    "value": 0,
+   "trained": false
+  },
+  "Общество": {
+    "name": "Общество",
+    "ability": "интеллект",
+    "value": 0,
+   "trained": false
+  },
+  "Скрытность": {
+    "name": "Скрытность",
+    "ability": "ловкость",
+    "value": 0,
+   "trained": false
+  },
+  "Выживание": {
+    "name": "Выживание",
+    "ability": "мудрость",
+    "value": 0,
+   "trained": false
+  },
+  "Воровство": {
+    "name": "Воровство",
+    "ability": "ловкость",
+    "value": 0,
+   "trained": false
+  } 
 }

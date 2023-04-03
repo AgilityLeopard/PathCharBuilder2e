@@ -5,28 +5,29 @@
         :src="'src/assets/pathfinder-logo.png'"
         style="max-height: 80px; width: auto"
       />
+      <!-- <div class="container-right">
+    <div class="card">
+      <input
+        @change="toggleTheme"
+        id="checkbox"
+        type="checkbox"
+        class="switch-checkbox"
+      />
+      <label for="checkbox" class="switch-label">
+  <span>🌙</span>
+  <span>☀️</span>
+  <div
+    class="switch-toggle"
+    :class="{ 'switch-toggle-checked': userTheme === 'dark-theme' }"
+  ></div>
+      </label>
+    </div> 
       <h1>Pathfinder 2E Создание персонажа</h1>
-      <!-- <ul class="progress-tracker">
-        <li
-          v-for="(step, index) in steps"
-          v-bind:key="step"
-          class="progress-step"
-          :class="{
-            'is-complete': index < currStep,
-            'is-active': index == currStep,
-          }"
-        >
-          <div
-            class="progress-marker"
-            :data-text="index < currStep ? '✓' : index + 1"
-          ></div>
-          <div class="progress-text">
-            <h4 class="progress-title">{{ step }}</h4>
-          </div>
-        </li>
-      </ul> -->
+
+  </div> -->
     </div>
     <div class="container">
+      
       <div class="row">
         <div class="preview-column col-sm-12 col-md-3 col-lg-3">
           <character-preview
@@ -37,6 +38,9 @@
             :favouredKlass="favouredKlass"
             :feats="feats"
             :myLanguages="myLanguages"
+            :mySkills="skill"
+            :level="level"
+            :background="background"
           >
           </character-preview>
         </div>
@@ -53,7 +57,7 @@
             :name="name"
             :pronouns="pronouns"
             :abilities="baseAbilities"
-            :boosts="baseBoost"
+           
             @set-abilities="setAbilities"
             @set-ability-points-ratio="setAbilityPointsRatio"
           >
@@ -75,6 +79,7 @@
             :abilities="abilities"
             :name="name"
             :pronouns="pronouns"
+            :level="level"
             @set-klass="setKlass"
             @set-favoured-klass="setFavouredKlass"
           >
@@ -82,7 +87,8 @@
 
           <select-skills
             v-if="currStep == 4"
-            :skillPoints="skillPoints"
+           
+            :skills="skills"
             :klass="klass"
             :race="race"
             :abilities="abilities"
@@ -91,7 +97,20 @@
           >
           </select-skills>
 
-          <select-feat
+          <select-background
+            v-if="currStep == 5"
+            :klass="klass"
+            :race="race"
+            :abilities="abilities"
+            :name="name"
+            :pronouns="pronouns"
+            :propbackground="background"
+            @set-background="setBackground"
+            
+          >
+          </select-background>
+
+          <!-- <select-feat
             v-if="currStep == 5"
             :klass="klass"
             :race="race"
@@ -99,9 +118,9 @@
             :name="name"
             :pronouns="pronouns"
           >
-          </select-feat>
+          </select-feat> -->
 
-          <select-equipment
+          <!-- <select-equipment
             v-if="currStep == 6"
             :feats="feats"
             :klass="klass"
@@ -110,10 +129,10 @@
             :name="name"
             :pronouns="pronouns"
           >
-          </select-equipment>
+          </select-equipment> -->
 
           <select-details
-            v-if="currStep == 7"
+            v-if="currStep == 6"
             :feats="feats"
             :klass="klass"
             :race="race"
@@ -182,8 +201,14 @@ import SelectSkills from "./components/SelectSkills.vue";
 import SelectFeat from "./components/SelectFeat.vue";
 import SelectEquipment from "./components/SelectEquipment.vue";
 import SelectDetails from "./components/SelectDetails.vue";
+import SelectBackground from "./components/SelectBackground.vue";
 
+// import skillData from "../data/skills.json";
 export default {
+  mounted() {
+    const initUserTheme = this.getTheme() || this.getMediaPreference();
+  this.setTheme(initUserTheme);
+  },
   name: "app",
   components: {
     SelectName,
@@ -195,18 +220,19 @@ export default {
     SelectFeat,
     SelectEquipment,
     SelectDetails,
+    SelectBackground
   },
   data: function () {
     return {
       //Progress Tracker
+      userTheme: "light-theme",
       steps: [
         "Name",
         "Abilities",
         "Race",
         "Class",
         "Skills",
-        "Feats",
-        "Equipment",
+        "Background",
         "Details",
       ],
       currStep: 0,
@@ -215,8 +241,9 @@ export default {
       //Name & Gender
       name: "",
       gender: "",
+      background: null,
       pronouns: {},
-
+      level: 1,
       //Abilities
       baseAbilities: {
         сила: 10,
@@ -227,20 +254,54 @@ export default {
         харизма: 10,
       },
       abilityPointsRatio: 0,
-
+      skills: {
+          Акробатика: 0,
+          Аркана: 0,
+          Атлетика: 0,
+          Ремесло: 0,
+          Обман: 0,
+          Дипломатия: 0,
+          Запугивание: 0,
+          Медицина: 0,
+          Природа: 0,
+          Оккультизм: 0,
+          Выступление: 0,
+          Религия: 0,
+          Общество: 0,
+          Скрытность: 0,
+          Выживание: 0,
+          Воровство: 0,
+      },
       //Race
       race: null,
       myLanguages: ["Всеобщий"],
+      // mySkills: null,
       NumberSkill: 0,
       //Class
       klass: null,
       favouredKlass: "",
-
       //Skills
-      skills: null,
-
+      baseSkills: {
+          Акробатика: 0,
+          Аркана: 0,
+          Атлетика: 0,
+          Ремесло: 0,
+          Обман: 0,
+          Дипломатия: 0,
+          Запугивание: 0,
+          Медицина: 0,
+          Природа: 0,
+          Оккультизм: 0,
+          Выступление: 0,
+          Религия: 0,
+          Общество: 0,
+          Скрытность: 0,
+          Выживание: 0,
+          Воровство: 0,
+      },
+      
       //Feats
-      feats: [],
+      feats: [""],
 
       //Equipment
       equipment: null,
@@ -250,6 +311,32 @@ export default {
     };
   },
   methods: {
+    setTheme(theme) {
+    localStorage.setItem("user-theme", theme);
+    this.userTheme = theme;
+    document.documentElement.className = theme;
+  },
+  toggleTheme() {
+  const activeTheme = localStorage.getItem("user-theme");
+  if (activeTheme === "light-theme") {
+    this.setTheme("dark-theme");
+  } else {
+    this.setTheme("light-theme");
+  }
+},
+getMediaPreference() {
+  const hasDarkPreference = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  if (hasDarkPreference) {
+    return "dark-theme";
+  } else {
+    return "light-theme";
+  }
+},
+getTheme() {
+  return localStorage.getItem("user-theme");
+},
     prevStep: function () {
       if (this.currStep > 0) {
         this.currStep--;
@@ -289,6 +376,12 @@ export default {
     setMyLanguages: function (value) {
       this.myLanguages = value;
     },
+    setMySkills: function (value) {
+      this.skills = value;
+    },
+    setBackground: function (value) {
+      this.background = value;
+    },
     getMod: function (score) {
       var bonus = Math.floor((score - 10) / 2);
       if (bonus > 0) {
@@ -298,6 +391,7 @@ export default {
       }
     },
   },
+
   computed: {
     canProceed: function () {
       var result;
@@ -326,16 +420,22 @@ export default {
     },
     abilities: function () {
       if (this.race && this.race.abilities) {
+        let str = (this.background && this.background.abilities) ? this.background.abilities.сила : 0;
+        let dex = (this.background && this.background.abilities) ? this.background.abilities.ловкость : 0;
+        let con = (this.background && this.background.abilities) ? this.background.abilities.телосложение : 0;
+        let wis = (this.background && this.background.abilities) ? this.background.abilities.мудрость : 0;
+        let cha = (this.background && this.background.abilities) ? this.background.abilities.харизма : 0;
+        let int = (this.background && this.background.abilities) ? this.background.abilities.интеллект : 0;
         return {
-          сила: this.baseAbilities.сила + this.race.abilities.сила,
+          сила: this.baseAbilities.сила + this.race.abilities.сила + str,
           ловкость:
-            this.baseAbilities.ловкость + this.race.abilities.ловкость,
+            this.baseAbilities.ловкость + this.race.abilities.ловкость + dex,
           телосложение:
-            this.baseAbilities.телосложение + this.race.abilities.телосложение,
+            this.baseAbilities.телосложение + this.race.abilities.телосложение + con,
           интеллект:
-            this.baseAbilities.интеллект + this.race.abilities.интеллект,
-          мудрость: this.baseAbilities.мудрость + this.race.abilities.мудрость,
-          харизма: this.baseAbilities.харизма + this.race.abilities.харизма,
+            this.baseAbilities.интеллект + this.race.abilities.интеллект + int,
+          мудрость: this.baseAbilities.мудрость + this.race.abilities.мудрость + wis,
+          харизма: this.baseAbilities.харизма + this.race.abilities.харизма + cha,
         };
       }
       return {
@@ -347,23 +447,72 @@ export default {
         харизма: this.baseAbilities.харизма,
       };
     },
-    skillPoints: function () {
-      let skills =
-        parseInt(this.klass.skillPoints) +
-        parseInt(this.getMod(this.abilities.интеллект));
-      skills = "human" === this.race.race ? skills + 1 : skills;
-      if (skills > 0) {
-        return "sp" === this.favouredKlass ? skills + 1 : skills;
-      } else {
-        return "sp" === this.favouredKlass ? 2 : 1;
+    skill: function () {
+      if (this.skills) {
+        return {
+          Акробатика: Math.floor( ( this.abilities.ловкость - 10 ) / 2 ) + this.skills.Акробатика,
+          Аркана: Math.floor( ( this.abilities.интеллект - 10 ) / 2 )+ this.skills.Аркана,
+          Атлетика: Math.floor( ( this.abilities.сила - 10 ) / 2 )+ this.skills.Атлетика,
+          Ремесло: Math.floor( ( this.abilities.интеллект - 10 ) / 2 )+ this.skills.Ремесло,
+          Обман: Math.floor( ( this.abilities.харизма - 10 ) / 2 )+ this.skills.Обман,
+          Дипломатия: Math.floor( ( this.abilities.харизма - 10 ) / 2 )+ this.skills.Дипломатия,
+          Запугивание: Math.floor( ( this.abilities.харизма - 10 ) / 2 )+ this.skills.Запугивание,
+          Медицина: Math.floor( ( this.abilities.мудрость - 10 ) / 2 )+ this.skills.Медицина,
+          Природа: Math.floor( ( this.abilities.мудрость - 10 ) / 2 )+ this.skills.Природа,
+          Оккультизм: Math.floor( ( this.abilities.интеллект - 10 ) / 2 )+ this.skills.Оккультизм,
+          Выступление: Math.floor( ( this.abilities.харизма - 10 ) / 2 )+ this.skills.Выступление,
+          Религия: Math.floor( ( this.abilities.мудрость - 10 ) / 2 )+ this.skills.Религия,
+          Общество: Math.floor( ( this.abilities.интеллект - 10 ) / 2 )+ this.skills.Общество,
+          Скрытность: Math.floor( ( this.abilities.ловкость - 10 ) / 2 )+ this.skills.Скрытность,
+          Выживание: Math.floor( ( this.abilities.мудрость - 10 ) / 2 )+ this.skills.Выживание,
+          Воровство: Math.floor( ( this.abilities.ловкость - 10 ) / 2 )+ this.skills.Воровство,
+
+        };
       }
-    },
+      return {
+          Акробатика: Math.floor( ( this.abilities.ловкость - 10 ) / 2 ),
+          Аркана: Math.floor( ( this.abilities.интеллект - 10 ) / 2 ),
+          Атлетика: Math.floor( ( this.abilities.сила - 10 ) / 2 ),
+          Ремесло: Math.floor( ( this.abilities.интеллект - 10 ) / 2 ),
+          Обман: Math.floor( ( this.abilities.харизма - 10 ) / 2 ),
+          Дипломатия: Math.floor( ( this.abilities.харизма - 10 ) / 2 ),
+          Запугивание: Math.floor( ( this.abilities.харизма - 10 ) / 2 ),
+          Медицина: Math.floor( ( this.abilities.мудрость - 10 ) / 2 ),
+          Природа: Math.floor( ( this.abilities.мудрость - 10 ) / 2 ),
+          Оккультизм: Math.floor( ( this.abilities.интеллект - 10 ) / 2 ),
+          Выступление: Math.floor( ( this.abilities.харизма - 10 ) / 2 ),
+          Религия: Math.floor( ( this.abilities.мудрость - 10 ) / 2 ),
+          Общество: Math.floor( ( this.abilities.интеллект - 10 ) / 2 ),
+          Скрытность: Math.floor( ( this.abilities.ловкость - 10 ) / 2 ),
+          Выживание: Math.floor( ( this.abilities.мудрость - 10 ) / 2 ),
+          Воровство: Math.floor( ( this.abilities.ловкость - 10 ) / 2 ),
+      };
+    }
+    // skillPoints: function () {
+    //   let skills =
+    //     parseInt(this.klass.skillPoints) +
+    //     parseInt(this.getMod(this.abilities.интеллект));
+    //   skills = "human" === this.race.race ? skills + 1 : skills;
+    //   if (skills > 0) {
+    //     return "sp" === this.favouredKlass ? skills + 1 : skills;
+    //   } else {
+    //     return "sp" === this.favouredKlass ? 2 : 1;
+    //   }
+    // },
+    // level: function () {
+    //   return parseInt(this.level);
+    // },
   },
+
 };
 </script>
 
 <style lang="scss">
+// import {}from "../src/components/_app.scss";
+
 @import url("https://fonts.googleapis.com/css?family=Amethysta|Titillium+Web&display=swap");
+
+
 // @import "node_modules/progress-tracker/src/styles/progress-tracker.scss";
 // @import '~pretty-checkbox/src/pretty-checkbox.scss';
 
@@ -538,6 +687,8 @@ a {
     }
   }
 
+
+
   label {
     display: inline-block;
     background-color: transparent;
@@ -549,6 +700,9 @@ a {
     border: 1px solid var(--light-color);
     border-radius: 4px;
     cursor: pointer;
+
+
+
   }
 }
 
@@ -626,4 +780,90 @@ button:hover #proceedError {
 .csli:not(:last-child):after {
   content: ", ";
 }
+
+:root {
+  --background-color-primary: #ebebeb;
+  --background-color-secondary: #fafafa;
+  --accent-color: #cacaca;
+  --text-primary-color: #222;
+  --element-size: 4rem;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+  --background-color-primary: #1e1e1e;
+  --background-color-secondary: #2d2d30;
+  --accent-color: #3f3f3f;
+  --text-primary-color: #ddd;
+}
+
+p {
+  color: var(--text-primary-color);
+}
+
+body{
+  background-color: var(--background-color-primary);
+}
+
+.container-center {
+  background-color: var(--background-color-primary);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  padding: 2rem 4rem;
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  background-color: var(--background-color-secondary);
+}
+
+.switch-checkbox {
+  display: none;
+}
+
+.switch-label {
+  /* for width, use the standard element-size */
+  width: var(--element-size); 
+
+  /* for other dimensions, calculate values based on it */
+  border-radius: var(--element-size);
+  border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+  padding: calc(var(--element-size) * 0.1);
+  font-size: calc(var(--element-size) * 0.3);
+  height: calc(var(--element-size) * 0.35);
+
+  align-items: center;
+  background: var(--text-primary-color);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  transition: background 0.5s ease;
+  justify-content: space-between;
+  z-index: 1;
+} 
+
+.switch-toggle {
+  position: absolute;
+  background-color: var(--background-color-primary);
+  border-radius: 50%;
+  top: calc(var(--element-size) * 0.07);
+  left: calc(var(--element-size) * 0.07);
+  height: calc(var(--element-size) * 0.4);
+  width: calc(var(--element-size) * 0.4);
+  transform: translateX(0);
+  transition: transform 0.3s ease, background-color 0.5s ease;
+}
+
+.switch-toggle-checked {
+  transform: translateX(calc(var(--element-size) * 0.6)) !important;
+}
+
+
 </style>

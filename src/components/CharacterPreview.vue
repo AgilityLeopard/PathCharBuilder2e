@@ -21,19 +21,33 @@
 
         <h5>Оборона</h5>
         <b>Скорость</b> {{ speed }}<br>
-        <b>Ближний бой</b> {{ mab }}<br>
-        <b>Дальний бой</b> {{ rab }}<br>
+        <!-- <b>Ближний бой</b> {{ mab }}<br>
+        <b>Дальний бой</b> {{ rab }}<br> -->
 
         <template v-if="myLanguages">
             <h5>языки</h5>
             <span 
                 v-for="language in myLanguages" 
-                :key="'preview-lang-traits-' + lang" 
+                :key="'preview-lang-traits-' + language" 
                 class="preview__lang-trait csli"
                 data-toggle="tooltip" 
                 data-placement="top" 
-                :title="lang"
+                :title="language"
             >{{language}}</span>
+        </template>
+
+        <template v-if="mySkills">
+            <h5>Навыки</h5>
+            <div class="preview__skills hidden-md-down">
+            <div v-for="(score, skills) in skillsFormatted" :key="'preview-desktop-' + skills" class="preview__skills">
+                <strong>{{ skills }}:</strong> {{ score }} 
+            </div>
+        </div>
+        <div class="preview__skills hidden-lg-up">
+            <div v-for="(score, skills) in mySkills" :key="'preview-mobile-' + skills" class="preview__skills">
+                <strong>{{ skills }}:</strong> {{ score }} 
+            </div>
+        </div>
         </template>
 
         <h5>Способности</h5>
@@ -82,7 +96,7 @@
                 data-toggle="tooltip" 
                 data-placement="top" 
                 :title="feat.desc"
-            >{{trait.name}}</span>
+            >{{feat.name}}</span>
         </template>
 
     </div>
@@ -92,7 +106,13 @@
 export default {
 	data: function () {
         return{
-            dummy: ''
+            dummy: '',
+            Profiency: {
+                Trained: 2,
+                Expert: 4,
+                Master: 6,
+                Legenda: 8,
+      },
         };
     },
     props: {
@@ -103,6 +123,8 @@ export default {
         favouredKlass: String,
         feats: Array,
         myLanguages: Array,
+        mySkills: Object,
+        level: Number,
     },
     methods: {
         calcBonus: function( score ) {
@@ -125,6 +147,26 @@ export default {
                 хар: this.abilities.харизма,
             }
         },
+        skillsFormatted: function () {
+            return {
+                Акробатика: this.mySkills.Акробатика,
+                Аркана: this.mySkills.Аркана,
+                Атлетика: this.mySkills.Атлетика,
+                Ремесло: this.mySkills.Ремесло,
+                Обман: this.mySkills.Обман,
+                Дипломатия: this.mySkills.Дипломатия,
+                Запугивание: this.mySkills.Запугивание,
+                Медицина: this.mySkills.Медицина,
+                Природа: this.mySkills.Природа,
+                Оккультизм: this.mySkills.Оккультизм,
+                Выступление: this.mySkills.Выступление,
+                Религия: this.mySkills.Религия,
+                Общество: this.mySkills.Общество,
+                Скрытность: this.mySkills.Скрытность,
+                Выживание: this.mySkills.Выживание,
+                Воровство: this.mySkills.Воровство,
+            }
+        },
         hp: function () {
             let klassBonus = this.klass ? parseInt(this.klass.hp) : 6;
             let hp = klassBonus + parseInt(this.calcBonus(this.abilities.телосложение));
@@ -134,18 +176,20 @@ export default {
             let ac = 10 + parseInt(this.calcBonus(this.abilities.ловкость));
             return ac;
         },
-        touch: function () {
-            let ac = 10 + parseInt(this.calcBonus(this.abilities.ловкость));
-            return ac;
-        },
-        ff: function () {
-            let ac = 10;
-            return ac;
-        }, 
+        // touch: function () {
+        //     let ac = 10 + parseInt(this.calcBonus(this.abilities.ловкость));
+        //     return ac;
+        // },
+        // ff: function () {
+        //     let ac = 10;
+        //     return ac;
+        // }, 
         ref: function() {
-            let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
-            let klassBonus = this.klass ? parseInt(this.klass.ref) : 0;
-            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + racialBonus;
+            // let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
+            let klassBonus = this.klass ? parseInt(this.Profiency[this.klass.ref]) : 0;
+
+            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
+
             if ( ref > 0) {
                 return '+' + ref;
             }
@@ -154,9 +198,9 @@ export default {
             }
         },
         fort: function() {
-            let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
-            let klassBonus = this.klass ? parseInt(this.klass.fort) : 0;
-            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.телосложение)) + racialBonus;
+            // let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
+            let klassBonus = this.klass ? parseInt(this.Profiency[this.klass.fort]) : 0;
+            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.телосложение)) + + parseInt(this.level);;
             if ( fort > 0) {
                 return '+' + fort;
             }
@@ -165,9 +209,9 @@ export default {
             }
         },
         will: function() {
-            let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
-            let klassBonus = this.klass ? parseInt(this.klass.will) : 0;
-            let will = klassBonus + parseInt(this.calcBonus(this.abilities.мудрость)) + racialBonus;
+            // let racialBonus = (this.race && this.race.bonuses.saves) ? this.race.bonuses.saves : 0;
+            let klassBonus = this.klass ? parseInt(this.Profiency[this.klass.will]) : 0;
+            let will = klassBonus + parseInt(this.calcBonus(this.abilities.мудрость)) + + parseInt(this.level);;
             if ( will > 0) {
                 return '+' + will;
             }
@@ -200,6 +244,9 @@ export default {
         },
         language: function() {
             return (this.myLanguages);
+        },
+        skill: function() {
+            return (this.skills);
         },
     }
 };
