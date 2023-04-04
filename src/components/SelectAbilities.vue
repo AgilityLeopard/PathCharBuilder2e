@@ -167,6 +167,7 @@ export default {
     abilities: Object,
     name: String,
     pronouns: Object,
+    boosts: Object,
 
   },
   components: {
@@ -186,17 +187,17 @@ export default {
       }
       return pointsSpent;
     },
-    boosts: function () {
-      return {
-        сила: 0,
-        ловкость: 0,
-        телосложение: 0,
-        интеллект: 0,
-        мудрость: 0,
-        харизма: 0,
-      };
+    // boosts: function () {
+    //   return {
+    //     сила: 0,
+    //     ловкость: 0,
+    //     телосложение: 0,
+    //     интеллект: 0,
+    //     мудрость: 0,
+    //     харизма: 0,
+    //   };
       
-    },
+    // },
   },
   methods: {
     //Boost

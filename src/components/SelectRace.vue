@@ -3,7 +3,7 @@
     <div id="select-abilities" class="main-col-content">
         <div class="content">
             <h2 class="section-header">Теперь давайте выберем расу!</h2>
-            <p>В Pathfinder раса является фундаментальной частью каждого персонажа. Раса смешивает биологию и культуру, а затем переводит эти концепции в расовые черты. Черты расы, история и культура формируют вашего персонажа. Это верно независимо от того, играете ли вы за стереотипы расы или против них.
+            <p>В Pathfinder раса является фундаментальной частью каждого персонажа. Раса смешивает биологию и культуру, а затем переводит эти концепции в расовые черты. Черты расы, история и культура формируют вашего персонажа. Это верно независимо от того, играете ли вы за стереотипы расы или против них.</p>
             <p>Выбор расы вашего персонажа — одно из наиболее важных решений, которое вам нужно будет принять. Каждая раса лучше всего подходит для определенного типа роли — дварфы лучше борются, чем колдуны, а полурослики не так хороши, как полуорки, как варвары. Представленные здесь расы обладают совершенно разными способностями, характерами и обществами.
 но в то же время ни одна из рас здесь не отклоняется слишком далеко от человечества, и все их способности примерно равны и сбалансированы.</p>
         </div>
@@ -180,14 +180,20 @@ export default {
              if ( this.myRace.freeAbility1 ) {
                  for (let ability in this.myRace.abilities){ 
                      if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility2){
-                        if(this.RaceSkill[ability] == 0)
+                        if(this.myRace.raceBuild[ability] == 0)
                             this.myRace.abilities[ability] = 0;
+                        if(this.myRace.raceBuild[ability] == -2)
+                            this.myRace.abilities[ability] = -2;
                      }
                  }
 
-                 if (this.RaceSkill[this.freeAbility1] == 0)
+                 if (this.myRace.raceBuild[this.freeAbility1] == 0)
                  {
                     this.myRace.abilities[ this.freeAbility1 ] = 2;
+                 }
+                 else if (this.myRace.raceBuild[this.freeAbility1] == -2)
+                 {
+                    this.myRace.abilities[ this.freeAbility1 ] = 0;
                  }
                 
              
@@ -197,14 +203,20 @@ export default {
             if ( this.myRace.freeAbility2 ) {
                  for (let ability in this.myRace.abilities){
                      if(this.myRace.abilities.hasOwnProperty(ability) && ability != this.freeAbility1){
-                        if(this.RaceSkill[ability] == 0)
+                        if(this.myRace.raceBuild[ability] == 0)
                             this.myRace.abilities[ability] = 0;
+                        if(this.myRace.raceBuild[ability] == -2)
+                            this.myRace.abilities[ability] = -2;
                      }
                  }
 
-                 if (this.RaceSkill[this.freeAbility2] == 0)
+                 if (this.myRace.raceBuild[this.freeAbility2] == 0)
                  {
                     this.myRace.abilities[ this.freeAbility2 ] = 2;
+                 }
+                 else if (this.myRace.raceBuild[this.freeAbility2] == -2)
+                 {
+                    this.myRace.abilities[ this.freeAbility2 ] = 0;
                  }
              }
         }

@@ -57,7 +57,7 @@
             :name="name"
             :pronouns="pronouns"
             :abilities="baseAbilities"
-           
+            :boosts="boosts"
             @set-abilities="setAbilities"
             @set-ability-points-ratio="setAbilityPointsRatio"
           >
@@ -243,6 +243,17 @@ export default {
       gender: "",
       background: null,
       pronouns: {},
+      boosts:  {
+
+        сила: 0,
+        ловкость: 0,
+        телосложение: 0,
+        интеллект: 0,
+        мудрость: 0,
+        харизма: 0,
+      },
+    
+
       level: 1,
       //Abilities
       baseAbilities: {
@@ -419,13 +430,37 @@ getTheme() {
       }
     },
     abilities: function () {
-      if (this.race && this.race.abilities) {
-        let str = (this.background && this.background.abilities) ? this.background.abilities.сила : 0;
-        let dex = (this.background && this.background.abilities) ? this.background.abilities.ловкость : 0;
-        let con = (this.background && this.background.abilities) ? this.background.abilities.телосложение : 0;
-        let wis = (this.background && this.background.abilities) ? this.background.abilities.мудрость : 0;
-        let cha = (this.background && this.background.abilities) ? this.background.abilities.харизма : 0;
-        let int = (this.background && this.background.abilities) ? this.background.abilities.интеллект : 0;
+      if (this.race && this.race.abilities ) {
+
+
+        var str = 0; 
+        var dex = 0; 
+        var con = 0; 
+        var wis = 0; 
+        var cha = 0; 
+        var int = 0; 
+        
+        if(this.background && this.background.abilities)
+        {
+          
+          str = str + this.background.abilities.сила;
+          dex = dex + this.background.abilities.ловкость;
+          con = con + this.background.abilities.телосложение;
+          wis = wis + this.background.abilities.мудрость;
+          cha = cha + this.background.abilities.харизма;
+          int = int + this.background.abilities.интеллект;
+        }
+
+        if(this.klass && this.klass.classAbilities)
+        {
+          if(this.klass.classAbilities.сила && this.klass.classAbilities.сила != 0 ) str = str + this.klass.classAbilities.сила;
+          if(this.klass.classAbilities.ловкость && this.klass.classAbilities.ловкость != 0 ) dex = dex + this.klass.classAbilities.ловкость;
+          if(this.klass.classAbilities.телосложение && this.klass.classAbilities.телосложение != 0 ) con = con + this.klass.classAbilities.телосложение;
+          if(this.klass.classAbilities.мудрость && this.klass.classAbilities.мудрость != 0 ) wis = wis + this.klass.classAbilities.мудрость;
+          if(this.klass.classAbilities.харизма && this.klass.classAbilities.харизма != 0 ) cha = cha + this.klass.classAbilities.харизма;
+          if(this.klass.classAbilities.интеллект && this.klass.classAbilities.интеллект != 0 ) int = int + this.klass.classAbilities.интеллект;
+        }
+
         return {
           сила: this.baseAbilities.сила + this.race.abilities.сила + str,
           ловкость:
@@ -790,80 +825,7 @@ button:hover #proceedError {
 }
 
 /* Define styles for the root window with dark - mode preference */
-:root.dark-theme {
-  --background-color-primary: #1e1e1e;
-  --background-color-secondary: #2d2d30;
-  --accent-color: #3f3f3f;
-  --text-primary-color: #ddd;
-}
 
-p {
-  color: var(--text-primary-color);
-}
-
-body{
-  background-color: var(--background-color-primary);
-}
-
-.container-center {
-  background-color: var(--background-color-primary);
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card {
-  padding: 2rem 4rem;
-  height: 200px;
-  width: 300px;
-  text-align: center;
-  border: 1px solid var(--accent-color);
-  border-radius: 4px;
-  background-color: var(--background-color-secondary);
-}
-
-.switch-checkbox {
-  display: none;
-}
-
-.switch-label {
-  /* for width, use the standard element-size */
-  width: var(--element-size); 
-
-  /* for other dimensions, calculate values based on it */
-  border-radius: var(--element-size);
-  border: calc(var(--element-size) * 0.025) solid var(--accent-color);
-  padding: calc(var(--element-size) * 0.1);
-  font-size: calc(var(--element-size) * 0.3);
-  height: calc(var(--element-size) * 0.35);
-
-  align-items: center;
-  background: var(--text-primary-color);
-  cursor: pointer;
-  display: flex;
-  position: relative;
-  transition: background 0.5s ease;
-  justify-content: space-between;
-  z-index: 1;
-} 
-
-.switch-toggle {
-  position: absolute;
-  background-color: var(--background-color-primary);
-  border-radius: 50%;
-  top: calc(var(--element-size) * 0.07);
-  left: calc(var(--element-size) * 0.07);
-  height: calc(var(--element-size) * 0.4);
-  width: calc(var(--element-size) * 0.4);
-  transform: translateX(0);
-  transition: transform 0.3s ease, background-color 0.5s ease;
-}
-
-.switch-toggle-checked {
-  transform: translateX(calc(var(--element-size) * 0.6)) !important;
-}
 
 
 </style>

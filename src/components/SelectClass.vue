@@ -1,9 +1,9 @@
 
 <template>
-    <div id="select-abilities" class="main-col-content">
+    <div id="select-classAbilities" class="main-col-content">
         <div class="content">
             <h2 class="section-header">Какой класс вы выбирите?</h2>
-            <!-- <p>{{name}}'s class is one of {{pronouns.their}} most defining features. Здесь должен быть текст {{pronouns.their}} abilities and gives {{pronouns.them}} a specific role in any adventuring party.</p> -->
+            <!-- <p>{{name}}'s class is one of {{pronouns.their}} most defining features. Здесь должен быть текст {{pronouns.their}} classAbilities and gives {{pronouns.them}} a specific role in any adventuring party.</p> -->
         </div>
         <div class="content box-shadow text-center">
             <h4 class="ntm">Выберите класс.</h4>
@@ -27,17 +27,39 @@
             </div>
         </div>
 
-        <div v-if="myKlass" class="content">
-            <h2 class="klass-title cap">{{myKlass.name}}</h2>
-            <p>{{myKlass.description}}</p>
-            <h3>Стандартные особенности</h3>
-            <div class="std-klass-traits">
+        <div v-if="myKlass" class="content content-back overflow">
+            <div ><h2 class="klass-title cap">{{myKlass.name}}</h2></div>
+            <div ><p>{{myKlass.description}}</p></div>
+            <div class="content-back"><h3>Стандартные особенности</h3></div>
+            <div class="std-klass-traits nested-items">
                 <p class="std-klass-trait">
                     <strong  data-placement="top" data-toggle="tooltip" :title="'Количество ' + name + ' имеющихся сейчас'">Хиты</strong>
                     <span  data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Телосложения.">
                         {{hp}}
                     </span>
                 </p>
+                <div v-if="myKlass.freeAbility1" class="content box-shadow text-center " style="margin-bottom: 1rem;">
+                    <h4 class="ntm">Выберите характеристику.</h4>
+                    <div class="radio-toolbar select-class__select-ability content ">
+                    <template v-for="(score, ability) in myKlass.classAbilities">
+                        <input 
+                            v-model="freeAbility1" 
+                            :key="'select-free1-' + ability + '-input'" 
+                            type="radio" 
+                            name="freeAbility1" 
+                            :id="'select-free1-' + ability" 
+                            :value="ability" 
+                            
+                            @change="updateFreeAbility1">
+                        <label :for="'select-free1-' + ability"  :key="'select-free1-' + ability + '-label'">
+                            <div >
+                                {{ability}}
+                            </div>
+                        </label>
+                    </template>
+                </div>
+                </div>
+    
                 <!-- <p class="std-klass-trait">
                     <strong data-placement="top" data-toggle="tooltip" :title="'Значение ' + pronouns.their + ' ближней атаки'">Ближний бой:</strong>
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Силы.">
@@ -51,52 +73,52 @@
                     </span>
                 </p> -->
             </div>
-            <div class="std-klass-traits">
-                <p class="std-klass-trait" data-placement="top" data-toggle="tooltip" title="">
+            <div class="std-klass-traits content-back">
+            <div class="content-back"> <p class="std-klass-trait" data-placement="top" data-toggle="tooltip" title="">
                     <strong>Рефлекс:</strong>
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Ловкости.">
                         {{ref}}
                     </span>
-                </p>
-                <p class="std-klass-trait">
+                </p></div>
+                <div class="content-back"><p class="std-klass-trait ">
                     <strong data-placement="top" data-toggle="tooltip" title="">Стойкость:</strong>
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Телосложения.">
                         {{fort}}
                     </span>
-                </p>
-                <p class="std-klass-trait">
+                </p></div>
+                <div class="content-back"><p class="std-klass-trait">
                     <strong data-placement="top" data-toggle="tooltip" title="">Воля:</strong>
                     <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Мудрости.">
                         {{will}}
                     </span>
-                </p>
+                </p></div>
             </div>
            
-            <div class="std-klass-traits">
-                <p class="std-klass-trait">
+            <div class="std-klass-traits content-back">
+                <div class="content-back"><p class="std-klass-trait">
                     <!-- <strong data-placement="top" data-toggle="tooltip" title="You will be able to train this number of skills.">Skill Points:</strong> -->
                     <!-- <span data-placement="top" data-toggle="tooltip" title="Это значение включает ваш модификатор Интеллекта.">
                         {{skillPoints}}
                     </span> -->
-                </p>
-                <p class="std-klass-trait std-klass-trait--class-skills">
+                </p></div>
+                <div class="content-back"><p class="std-klass-trait std-klass-trait--class-skills">
                     <strong data-placement="top" data-toggle="tooltip" title="Если вы тренируете любой из этих навыков, вы получите дополнительный бонус +3 к этому навыку.">Классовые навыки:</strong>
                     <span class="no-hover">
                         <span v-for="skill in myKlass.classSkills" :key="skill" class="csli">
                             {{skill}}</span>
                     </span>
-                </p>
+                </p></div>
             </div>
-            <div class="std-klass-traits">
+            <div class="content-back"><div class="std-klass-traits">
                 <p class="std-klass-trait">
                     <strong data-placement="top" data-toggle="tooltip" title="Вы сможете потратить это на оборудование.">Стартовое богатство:</strong>
                     <span class="no-hover">
                         {{myKlass.gold}} золотых монет
                     </span>
-                </p>
+                </p></div>
             </div>
-            <h3>Оружие и доспехи</h3>
-                    <p>{{myKlass.proficiencyDescription}}</p>
+            <div class="content-back"> <h3>Оружие и доспехи</h3>
+                    <p>{{myKlass.proficiencyDescription}}</p></div>
             
             <fighter v-if="myKlass.name == 'Fighter'"></fighter>
             <rogue v-if="myKlass.name == 'Rogue'"></rogue>
@@ -104,7 +126,7 @@
                 v-if="myKlass.name == 'Paladin'" 
                 :name="name" 
                 :pronouns="pronouns" 
-                :abilities="abilities" >
+                :classAbilities="classAbilities" >
             </paladin>
             <cleric 
                 v-if="myKlass.name == 'Cleric'"
@@ -112,7 +134,7 @@
                 @set-domains="setDomains"
                 :name="name" 
                 :pronouns="pronouns" 
-                :abilities="abilities"
+                :classAbilities="classAbilities"
                 >
             </cleric>
             <sorcerer v-if="myKlass.name == 'Sorcerer'"></sorcerer>
@@ -120,7 +142,7 @@
                 v-if="myKlass.name == 'Wizard'"
                 :name="name" 
                 :pronouns="pronouns" 
-                :abilities="abilities">
+                :classAbilities="classAbilities">
             </wizard>
 
             <!-- <h3>Favoured Class Bonus</h3> -->
@@ -170,6 +192,10 @@ export default {
             myKlass: null,
             klasses: klassData,
             favouredKlass: '',
+            BoostAbility1: "",
+            BoostAbility2: "",
+            freeAbility2: "",
+            freeAbility1: "",
             Profiency: {
                 Trained: 2,
                 Expert: 4,
@@ -180,7 +206,7 @@ export default {
     },
     props: {
         propKlass: Object,
-        abilities: Object,
+        classAbilities: Object,
         race: Object,
         name: String,
         pronouns: Object,
@@ -201,31 +227,13 @@ export default {
     },
     computed: {
         hp: function () {
-            let hp = parseInt(this.myKlass.hp) + parseInt(this.calcBonus(this.abilities.телосложение));
+            let hp = parseInt(this.myKlass.hp) + parseInt(this.calcBonus(this.race.abilities.телосложение));
             return ( 'hp' === this.favouredKlass ) ? hp + 1 : hp;
         },
-        // mab: function() {
-        //     let mab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.сила));
-        //     if ( mab > 0) {
-        //         return '+' + mab;
-        //     }
-        //     else {
-        //         return mab;
-        //     }
-        // },
-        // rab: function() {
-        //     let rab = parseInt(this.myKlass.bab) + parseInt(this.calcBonus(this.abilities.ловкость));
-        //     if ( rab > 0) {
-        //         return '+' + rab;
-        //     }
-        //     else {
-        //         return rab;
-        //     }
-        // },
         ref: function() {
             // let racialBonus = this.race.bonuses.saves ? this.race.bonuses.saves : 0;
             let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.ref]) : 0;
-            let ref = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
+            let ref = klassBonus + parseInt(this.calcBonus(this.race.abilities.ловкость)) + parseInt(this.level);
             // let ref = parseInt(this.calcProf(this.myKlass.ref));
             console.log(parseInt(this.level));
 
@@ -238,7 +246,7 @@ export default {
         },
         fort: function() {
             let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.fort]) : 0;
-            let fort = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
+            let fort = klassBonus + parseInt(this.calcBonus(this.race.abilities.ловкость)) + parseInt(this.level);
             if ( fort > 0) {
                 return '+' + fort;
             }
@@ -248,7 +256,7 @@ export default {
         },
         will: function() {
             let klassBonus = this.myKlass ? parseInt(this.Profiency[this.myKlass.will]) : 0;
-            let will = klassBonus + parseInt(this.calcBonus(this.abilities.ловкость)) + parseInt(this.level);
+            let will = klassBonus + parseInt(this.calcBonus(this.race.abilities.ловкость)) + parseInt(this.level);
             if ( will > 0) {
                 return '+' + will;
             }
@@ -269,6 +277,31 @@ export default {
                 return bonus;
             }
         },
+        updateFreeAbility1: function() {
+
+//Нужно перера
+ if ( this.myKlass.freeAbility1 ) {
+     for (let ability in this.myKlass.classAbilities){ 
+         if(this.myKlass.classAbilities.hasOwnProperty(ability)){
+            if(this.myKlass.classBuild[ability] == 0)
+                this.myKlass.classAbilities[ability] = 0;
+            if(this.myKlass.classBuild[ability] == -2)
+                this.myKlass.classAbilities[ability] = -2;
+         }
+     }
+
+     if (this.myKlass.classBuild[this.freeAbility1] == 0)
+     {
+        this.myKlass.classAbilities[ this.freeAbility1 ] = 2;
+     }
+     else if (this.myKlass.classBuild[this.freeAbility1] == -2)
+     {
+        this.myKlass.classAbilities[ this.freeAbility1 ] = 0;
+     }
+    
+ 
+ }
+},
         calcProf: function ( prof )
         {
             return this.Profiency[prof];
@@ -314,5 +347,33 @@ export default {
         background: white;
     }
 }
+
+.content-back {
+    //  display: flex;
+    //  flex-direction: column;
+    // overflow-y: scroll;
+    // flex-wrap: wrap;
+
+    display: flex;
+    // width: 56px;
+   width: 66vw;
+  height: auto;
+  box-sizing: border-box;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.overflow {
+    overflow-y: scroll;
+    height: 400px;
+}
+
+.nested-items {
+  display: flex;
+  width: 42%;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
 
 </style>
